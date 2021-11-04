@@ -9,7 +9,7 @@ const Para = styled.div`
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-indigo-500">
+    <div tw="bg-indigo-500">
       Welcome
       <Para>asdf</Para>
     </div>
