@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       </div>
       <h1>h1 tag</h1>
       <h2>h2 tag</h2>
-      <button tw="btn">Button</button>
+      <button>Button</button>
     </>
   );
 };
