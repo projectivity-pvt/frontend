@@ -1,19 +1,7 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styled from "styled-components";
-
-const Para = styled.div`
-  color: red;
-`;
 
 const Home: NextPage = () => {
-  return (
-    <div tw="bg-indigo-500">
-      Welcome
-      <Para>asdf</Para>
-    </div>
-  );
+  return <div tw="bg-indigo-500">Welcome</div>;
 };
 
 export default Home;
