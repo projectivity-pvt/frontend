@@ -1,6 +1,4 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import styled from "styled-components";
 
 const Para = styled.div`
@@ -12,6 +10,7 @@ const Home: NextPage = () => {
     <div className="bg-indigo-500">
       Welcome
       <Para>asdf</Para>
+      <h1>This is h1</h1>
     </div>
   );
 };
