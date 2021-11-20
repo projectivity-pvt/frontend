@@ -1,16 +1,22 @@
-module.exports = {
-  mode: "jit",
-  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+const windmill = require('@windmill/react-ui/config')
+const defaultTheme = require('tailwindcss/defaultTheme')
+
+module.exports = windmill({
+  mode: 'jit',
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
+    },
   },
   variants: {
     extend: {},
   },
   plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/line-clamp"),
-    require("@tailwindcss/typography"),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/typography'),
   ],
-};
+})

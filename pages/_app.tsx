@@ -1,8 +1,14 @@
 import '../styles/globals.scss'
 import '../styles/tailwind.scss'
 import type { AppProps } from 'next/app'
+import { Windmill } from '@windmill/react-ui'
+
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <Windmill>
+      <Component {...pageProps} />
+    </Windmill>
+  )
 }
 
 export default MyApp
