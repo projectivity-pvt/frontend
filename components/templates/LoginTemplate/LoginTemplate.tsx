@@ -1,8 +1,9 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import Image from 'next/image'
 import { LoginForm } from '@components/organisms/LoginForm/LoginForm'
 import { RegisterForm } from '@components/organisms/RegisterForm/RegisterForm'
 import { ForgotPasswordForm } from '@components/organisms/ForgotPasswordForm/ForgotPasswordForm'
+import { Auth } from '@aws-amplify/auth'
 interface Props {}
 
 enum AuthActionEnum {
@@ -51,7 +52,18 @@ export const LoginTemplate = (props: Props) => {
   }
   const [authState, dispatch] = useReducer(authReducer, initialAuthState)
 
-  console.log(authState)
+  const getUser = async () => {
+    const currentUser = await Auth.currentAuthenticatedUser({
+      bypassCache: true,
+    })
+    const currentUserInfo = await Auth.currentUserInfo()
+    console.log({ currentUser, currentUserInfo })
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
+
   return (
     <div>
       <span
@@ -113,6 +125,14 @@ export const LoginTemplate = (props: Props) => {
                     </span>
                   </p>
                 )}
+                <p className="mt-2">
+                  <span
+                    onClick={() => dispatch(AuthActionEnum.FORGOT_PASSWORD)}
+                    className=" cursor-pointer text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                  >
+                    Need Help? Contact us
+                  </span>
+                </p>
               </div>
             </main>
           </div>
