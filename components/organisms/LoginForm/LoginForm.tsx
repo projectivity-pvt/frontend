@@ -5,9 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
 import { phoneRegExp } from '@utils//constants'
 import Image from 'next/image'
-import { Auth } from '@aws-amplify/auth'
-
-interface Props {}
+import { Auth } from 'aws-amplify'
 
 interface IFormInputs {
   mobile: string
@@ -25,7 +23,7 @@ const schema = yup
   })
   .required()
 
-export const LoginForm = (props: Props) => {
+export const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -58,48 +56,46 @@ export const LoginForm = (props: Props) => {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Label className="mt-4">
-          <span>Mobile Number</span>
-          <div className="relative">
-            <Input
-              {...register('mobile')}
-              type="tel"
-              maxLength="10"
-              id="mobile"
-              name="mobile"
-              className="mt-1 pl-10"
-              css={undefined}
-            />
-            <span className="absolute h-[19px] left-2 top-1/2 transform -translate-y-1/2">
-              <Image
-                src="/images/india-flag.svg"
-                alt="indian flag"
-                height="19"
-                width="19"
-              />
-            </span>
-          </div>
-          <HelperText valid={false}>{errors.mobile?.message}</HelperText>
-        </Label>
-        <Label className="mt-4">
-          <span>Password</span>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Label className="mt-4">
+        <span>Mobile Number</span>
+        <div className="relative">
           <Input
-            {...register('password')}
-            id="password"
-            name="password"
-            type="password"
-            className="mt-1"
-            placeholder="******"
+            {...register('mobile')}
+            type="tel"
+            maxLength="10"
+            id="mobile"
+            name="mobile"
+            className="mt-1 pl-10"
             css={undefined}
           />
-          <HelperText valid={false}>{errors.password?.message}</HelperText>
-        </Label>
-        <Button className="mt-6" block type="submit">
-          Log In
-        </Button>
-      </form>
-    </>
+          <span className="absolute h-[19px] left-2 top-1/2 transform -translate-y-1/2">
+            <Image
+              src="/images/india-flag.svg"
+              alt="indian flag"
+              height="19"
+              width="19"
+            />
+          </span>
+        </div>
+        <HelperText valid={false}>{errors.mobile?.message}</HelperText>
+      </Label>
+      <Label className="mt-4">
+        <span>Password</span>
+        <Input
+          {...register('password')}
+          id="password"
+          name="password"
+          type="password"
+          className="mt-1"
+          placeholder="******"
+          css={undefined}
+        />
+        <HelperText valid={false}>{errors.password?.message}</HelperText>
+      </Label>
+      <Button className="mt-6" block type="submit">
+        Log In
+      </Button>
+    </form>
   )
 }

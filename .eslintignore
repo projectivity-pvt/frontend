@@ -1,0 +1,17 @@
+node_modules
+babel.config.js
+apollo.config.js
+sentry.js
+next.config.js
+.eslintrc.js
+sentry.server.config.js
+sentry.client.config.js
+firebase-messaging-sw.js
+/public/service-worker.js
+next-sitemap.js
+
+
+# TODO: find and remove test.tsx and stories.tsx from this file
+**/test.tsx
+**/stories.tsx
+**/types/*.ts

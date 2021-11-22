@@ -1,4 +1,4 @@
-import { Auth } from '@aws-amplify/auth'
+import { Auth } from 'aws-amplify'
 import { Button } from '@windmill/react-ui'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'

@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import { Windmill } from '@windmill/react-ui'
 import Amplify from 'aws-amplify'
 import { Toaster } from 'react-hot-toast'
+
 Amplify.configure({
   Auth: {
     // REQUIRED - Amazon Cognito Region
@@ -37,13 +38,11 @@ Amplify.configure({
   ssr: true,
 })
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
+const MyApp = ({ Component, pageProps }: AppProps) => (
     <Windmill>
       <Component {...pageProps} />
       <Toaster />
     </Windmill>
   )
-}
 
 export default MyApp

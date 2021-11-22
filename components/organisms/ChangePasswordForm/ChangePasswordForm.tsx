@@ -3,8 +3,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
-import { Auth } from '@aws-amplify/auth'
-import { useRouter } from 'next/dist/client/router'
+import { Auth } from 'aws-amplify'
 
 interface Props {
   username: string
@@ -64,36 +63,34 @@ export const ChangePasswordForm: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Label>
-          <span>Verification Code</span>
-          <Input
-            {...register('code')}
-            id="code"
-            name="code"
-            className="mt-1"
-            css={undefined}
-          />
-          <HelperText valid={false}>{errors.code?.message}</HelperText>
-        </Label>
-        <Label className="mt-4">
-          <span>New Password</span>
-          <Input
-            {...register('password')}
-            id="password"
-            name="password"
-            type="password"
-            className="mt-1"
-            placeholder="******"
-            css={undefined}
-          />
-          <HelperText valid={false}>{errors.password?.message}</HelperText>
-        </Label>
-        <Button className="mt-6" block type="submit">
-          Change Password
-        </Button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Label>
+        <span>Verification Code</span>
+        <Input
+          {...register('code')}
+          id="code"
+          name="code"
+          className="mt-1"
+          css={undefined}
+        />
+        <HelperText valid={false}>{errors.code?.message}</HelperText>
+      </Label>
+      <Label className="mt-4">
+        <span>New Password</span>
+        <Input
+          {...register('password')}
+          id="password"
+          name="password"
+          type="password"
+          className="mt-1"
+          placeholder="******"
+          css={undefined}
+        />
+        <HelperText valid={false}>{errors.password?.message}</HelperText>
+      </Label>
+      <Button className="mt-6" block type="submit">
+        Change Password
+      </Button>
+    </form>
   )
 }

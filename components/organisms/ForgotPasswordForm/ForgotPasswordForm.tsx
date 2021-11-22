@@ -3,12 +3,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
-import { Auth } from '@aws-amplify/auth'
+import { Auth } from 'aws-amplify'
 import Image from 'next/image'
 import { phoneRegExp } from '@utils//constants'
 import { ChangePasswordForm } from '../ChangePasswordForm/ChangePasswordForm'
-
-interface Props {}
 
 interface IFormInputs {
   mobile: string
@@ -20,7 +18,7 @@ const schema = yup
   })
   .required()
 
-export const ForgotPasswordForm = (props: Props) => {
+export const ForgotPasswordForm = () => {
   const [codeSent, setCodeSent] = useState(false)
 
   const {
@@ -51,6 +49,7 @@ export const ForgotPasswordForm = (props: Props) => {
   }
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {!codeSent ? (
         <form onSubmit={handleSubmit(onSubmit)}>

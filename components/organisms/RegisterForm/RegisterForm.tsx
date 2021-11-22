@@ -1,14 +1,12 @@
 import { Button, HelperText, Input, Label } from '@windmill/react-ui'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
-import { Auth } from '@aws-amplify/auth'
-import { VerifyAccountForm } from '../VerifyAccountForm/VerifyAccountForm'
+import { Auth } from 'aws-amplify'
 import { phoneRegExp } from '@utils//constants'
 import Image from 'next/image'
-
-interface Props {}
+import { VerifyAccountForm } from '../VerifyAccountForm/VerifyAccountForm'
 
 interface IFormInputs {
   name: string
@@ -39,7 +37,7 @@ const schema = yup
   })
   .required()
 
-export const RegisterForm = (props: Props) => {
+export const RegisterForm = () => {
   const [userData, setUserData] = useState({
     username: '',
     password: '',
@@ -82,6 +80,7 @@ export const RegisterForm = (props: Props) => {
   }
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {!userData.username ? (
         <form onSubmit={handleSubmit(onSubmit)}>

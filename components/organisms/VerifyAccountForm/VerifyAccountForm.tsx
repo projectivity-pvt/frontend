@@ -3,8 +3,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
-import { Auth } from '@aws-amplify/auth'
-import { useRouter } from 'next/dist/client/router'
+import { Auth } from 'aws-amplify'
 import { ResendOtp } from '../ResendOtp/ResendOtp'
 
 interface Props {
@@ -25,8 +24,6 @@ const schema = yup
   .required()
 
 export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
-  const router = useRouter()
-
   const {
     userData: { username, password },
   } = props
@@ -63,24 +60,22 @@ export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Label>
-          <span>Verification Code</span>
-          <Input
-            {...register('code')}
-            id="code"
-            name="code"
-            className="mt-1"
-            css={undefined}
-          />
-          <HelperText valid={false}>{errors.code?.message}</HelperText>
-          <ResendOtp username={username} />
-        </Label>
-        <Button className="mt-6" block type="submit">
-          Verify and Login
-        </Button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Label>
+        <span>Verification Code</span>
+        <Input
+          {...register('code')}
+          id="code"
+          name="code"
+          className="mt-1"
+          css={undefined}
+        />
+        <HelperText valid={false}>{errors.code?.message}</HelperText>
+        <ResendOtp username={username} />
+      </Label>
+      <Button className="mt-6" block type="submit">
+        Verify and Login
+      </Button>
+    </form>
   )
 }

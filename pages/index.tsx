@@ -5,8 +5,7 @@ const Para = styled.div`
   color: red;
 `
 
-const Home: NextPage = () => {
-  return (
+const Home: NextPage = () => (
     <div className="bg-indigo-100">
       Welcome
       <Para>asdf</Para>
@@ -19,6 +18,5 @@ const Home: NextPage = () => {
       />
     </div>
   )
-}
 
 export default Home

@@ -3,8 +3,7 @@ import Image from 'next/image'
 import { LoginForm } from '@components/organisms/LoginForm/LoginForm'
 import { RegisterForm } from '@components/organisms/RegisterForm/RegisterForm'
 import { ForgotPasswordForm } from '@components/organisms/ForgotPasswordForm/ForgotPasswordForm'
-import { Auth } from '@aws-amplify/auth'
-interface Props {}
+import { Auth } from 'aws-amplify'
 
 enum AuthActionEnum {
   'LOGIN' = 'LOGIN',
@@ -17,7 +16,7 @@ interface AuthState {
   header: string
 }
 
-export const LoginTemplate = (props: Props) => {
+export const LoginTemplate = () => {
   const authReducer = (state: AuthState, action: AuthActionEnum): AuthState => {
     switch (action) {
       case 'LOGIN': {
