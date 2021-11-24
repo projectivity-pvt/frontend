@@ -6,6 +6,8 @@ import * as yup from 'yup'
 import { Auth } from 'aws-amplify'
 import { phoneRegExp } from '@utils//constants'
 import Image from 'next/image'
+import { Loader } from '@components/atoms/Loader/Loader'
+import toast from 'react-hot-toast'
 import { VerifyAccountForm } from '../VerifyAccountForm/VerifyAccountForm'
 
 interface IFormInputs {
@@ -42,6 +44,7 @@ export const RegisterForm = () => {
     username: '',
     password: '',
   })
+  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
@@ -52,6 +55,7 @@ export const RegisterForm = () => {
 
   async function signUpWithEmail(data: IFormInputs) {
     const { email, password, name, mobile } = data
+    setLoading(true)
     try {
       const { user } = await Auth.signUp({
         username: `+91${mobile}`,
@@ -62,21 +66,19 @@ export const RegisterForm = () => {
         },
       })
 
-      if (user.getUsername()) {
+      if (user && user.getUsername()) {
         setUserData({ username: user.getUsername(), password })
+        // toast.success(`👋 Hello, ${user.getUsername()}`)
+        toast.success(`🚦 Please verify your mobile number to continue`)
       }
     } catch (error) {
-      console.log('error signing up:', error)
+      toast.error(error.message)
     }
+    setLoading(false)
   }
 
   const onSubmit = (data: IFormInputs) => {
-    console.log(data)
-    try {
-      signUpWithEmail(data)
-    } catch {
-      console.log('failed')
-    }
+    signUpWithEmail(data)
   }
 
   return (
@@ -160,8 +162,8 @@ export const RegisterForm = () => {
             {errors.agree?.message}
           </HelperText>
 
-          <Button className="mt-6" block type="submit">
-            Create Account
+          <Button disabled={loading} className="mt-6 h-10" block type="submit">
+            {!loading ? <span>Register</span> : <Loader />}
           </Button>
         </form>
       ) : (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, HelperText, Input, Label } from '@windmill/react-ui'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
@@ -6,6 +6,9 @@ import * as yup from 'yup'
 import { phoneRegExp } from '@utils//constants'
 import Image from 'next/image'
 import { Auth } from 'aws-amplify'
+import { Loader } from '@components/atoms/Loader/Loader'
+import { useRouter } from 'next/router'
+import toast from 'react-hot-toast'
 
 interface IFormInputs {
   mobile: string
@@ -24,6 +27,8 @@ const schema = yup
   .required()
 
 export const LoginForm = () => {
+  const router = useRouter()
+  const [loading, setLoading] = useState<boolean>(false)
   const {
     register,
     handleSubmit,
@@ -34,24 +39,27 @@ export const LoginForm = () => {
 
   const loginWithMobile = async (data: IFormInputs) => {
     const { mobile, password } = data
+    setLoading(true)
     try {
       const amplifyUser = await Auth.signIn(`+91${mobile}`, password)
       if (amplifyUser) {
-        console.log(amplifyUser)
-        // router.push('/')
+        setLoading(false)
+        toast.success('Logged In successfully')
+        router.push('/')
       } else {
         throw new Error('Unable to Login.')
       }
     } catch (error) {
-      console.log('error signing in', error)
+      toast.error(error.message)
     }
+    setLoading(false)
   }
 
   const onSubmit = (data: IFormInputs) => {
     try {
       loginWithMobile(data)
     } catch (err) {
-      console.log(err)
+      setLoading(false)
     }
   }
 
@@ -93,8 +101,8 @@ export const LoginForm = () => {
         />
         <HelperText valid={false}>{errors.password?.message}</HelperText>
       </Label>
-      <Button className="mt-6" block type="submit">
-        Log In
+      <Button disabled={loading} className="mt-6 h-10" block type="submit">
+        {!loading ? <span>Log In</span> : <Loader />}
       </Button>
     </form>
   )

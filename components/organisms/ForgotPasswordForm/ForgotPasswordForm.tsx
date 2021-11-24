@@ -6,6 +6,8 @@ import * as yup from 'yup'
 import { Auth } from 'aws-amplify'
 import Image from 'next/image'
 import { phoneRegExp } from '@utils//constants'
+import { Loader } from '@components/atoms/Loader/Loader'
+import toast from 'react-hot-toast'
 import { ChangePasswordForm } from '../ChangePasswordForm/ChangePasswordForm'
 
 interface IFormInputs {
@@ -20,6 +22,7 @@ const schema = yup
 
 export const ForgotPasswordForm = () => {
   const [codeSent, setCodeSent] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const {
     register,
@@ -32,16 +35,18 @@ export const ForgotPasswordForm = () => {
 
   async function forgotPasswordHandler(data: IFormInputs) {
     const { mobile } = data
+    setLoading(true)
     try {
       const resetUser = await Auth.forgotPassword(`+91${mobile}`)
       if (resetUser) {
-        console.log(resetUser)
         setCodeSent(true)
+        setLoading(false)
+        toast.success('Please verify the OTP to reset your password')
       }
-      console.log('code resent successfully')
     } catch (err) {
-      console.log('error resending code: ', err)
+      toast.error(err.message)
     }
+    setLoading(false)
   }
 
   const onSubmit = (data: IFormInputs) => {
@@ -76,8 +81,8 @@ export const ForgotPasswordForm = () => {
             </div>
             <HelperText valid={false}>{errors.mobile?.message}</HelperText>
           </Label>
-          <Button className="mt-6" block type="submit">
-            Verify account
+          <Button disabled={loading} className="mt-6 h-10" block type="submit">
+            {!loading ? <span>Verify account</span> : <Loader />}
           </Button>
         </form>
       ) : (

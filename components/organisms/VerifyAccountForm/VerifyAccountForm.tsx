@@ -1,9 +1,12 @@
 import { Label, Input, Button, HelperText } from '@windmill/react-ui'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
 import { Auth } from 'aws-amplify'
+import { Loader } from '@components/atoms/Loader/Loader'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/router'
 import { ResendOtp } from '../ResendOtp/ResendOtp'
 
 interface Props {
@@ -24,6 +27,8 @@ const schema = yup
   .required()
 
 export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
   const {
     userData: { username, password },
   } = props
@@ -37,26 +42,25 @@ export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
   })
 
   const verifyCode = async (code: string) => {
+    setLoading(true)
     try {
       await Auth.confirmSignUp(username, code)
       const amplifyUser = await Auth.signIn(username, password)
       if (amplifyUser) {
-        console.log(amplifyUser)
-        // router.push('/')
+        toast.success(`👋 Hello, ${amplifyUser?.attributes?.name}`)
+        setLoading(false)
+        router.push('/')
       } else {
         throw new Error('Unable to Login.')
       }
     } catch (err) {
-      console.log('Error confirming signup:', err)
+      toast.error(err.message)
     }
+    setLoading(false)
   }
 
   const onSubmit = (data: IFormInputs) => {
-    try {
-      verifyCode(data.code)
-    } catch (err) {
-      console.log(err)
-    }
+    verifyCode(data.code)
   }
 
   return (
@@ -73,8 +77,8 @@ export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
         <HelperText valid={false}>{errors.code?.message}</HelperText>
         <ResendOtp username={username} />
       </Label>
-      <Button className="mt-6" block type="submit">
-        Verify and Login
+      <Button disabled={loading} className="mt-6 h-10" block type="submit">
+        {!loading ? <span>Verify and Login</span> : <Loader />}
       </Button>
     </form>
   )

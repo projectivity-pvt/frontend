@@ -1,22 +1,50 @@
 import type { NextPage } from 'next'
-import styled from '@emotion/styled'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { Auth } from 'aws-amplify'
+import { Button } from '@windmill/react-ui'
+import toast from 'react-hot-toast'
 
-const Para = styled.div`
-  color: red;
-`
+const Home: NextPage = () => {
+  const [user, setUser] = useState('')
+  const getUser = async () => {
+    const currentUserInfo = await Auth.currentUserInfo()
+    if (currentUserInfo?.attributes?.name) {
+      setUser(currentUserInfo.attributes.name)
+    }
+  }
 
-const Home: NextPage = () => (
-    <div className="bg-indigo-100">
-      Welcome
-      <Para>asdf</Para>
-      <h1>This is h1</h1>
-      <input className="" type="text" />
-      <input type="checkbox" className="rounded text-indigo-500" />
-      <input
-        type="text"
-        className="bg-gray-50 border border-gray-300 text-gray-900 mt-4 sm:text-sm rounded-lg focus:ring-blue-500 focus:ring-4 focus:border-blue-500 block w-full p-2.5"
-      />
-    </div>
+  useEffect(() => {
+    getUser()
+  }, [])
+
+  const handleSignout = async () => {
+    try {
+      await Auth.signOut()
+      toast.success('Logged out ☹️')
+    } catch (err) {
+      toast.error(err.message)
+    }
+  }
+
+  return (
+    <>
+      <div className="my-4">Welcome , {user}</div>
+
+      <Link href="/login">
+        <a className="bg-indigo-200 rounded p-2 text-indigo-600">Go to login</a>
+      </Link>
+
+      <Button
+        onClick={() => handleSignout()}
+        className="mt-6 h-10"
+        block
+        type="submit"
+      >
+        Log out
+      </Button>
+    </>
   )
+}
 
 export default Home

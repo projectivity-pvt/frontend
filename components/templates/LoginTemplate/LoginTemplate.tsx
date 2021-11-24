@@ -51,18 +51,6 @@ export const LoginTemplate = () => {
   }
   const [authState, dispatch] = useReducer(authReducer, initialAuthState)
 
-  const getUser = async () => {
-    const currentUser = await Auth.currentAuthenticatedUser({
-      bypassCache: true,
-    })
-    const currentUserInfo = await Auth.currentUserInfo()
-    console.log({ currentUser, currentUserInfo })
-  }
-
-  useEffect(() => {
-    getUser()
-  }, [])
-
   return (
     <div>
       <span

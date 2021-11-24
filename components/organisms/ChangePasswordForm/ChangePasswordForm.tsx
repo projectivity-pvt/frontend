@@ -1,9 +1,11 @@
 import { Label, Input, Button, HelperText } from '@windmill/react-ui'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
 import { Auth } from 'aws-amplify'
+import { Loader } from '@components/atoms/Loader/Loader'
+import toast from 'react-hot-toast'
 
 interface Props {
   username: string
@@ -27,6 +29,7 @@ const schema = yup
 
 export const ChangePasswordForm: React.FC<Props> = (props: Props) => {
   const { username } = props
+  const [loading, setLoading] = useState<boolean>(false)
   const {
     register,
     handleSubmit,
@@ -37,6 +40,7 @@ export const ChangePasswordForm: React.FC<Props> = (props: Props) => {
 
   const changePasswordHandler = async (data: IFormInputs) => {
     const { code, password } = data
+    setLoading(true)
     try {
       const changedPassword = await Auth.forgotPasswordSubmit(
         `+91${username}`,
@@ -44,22 +48,19 @@ export const ChangePasswordForm: React.FC<Props> = (props: Props) => {
         password
       )
       if (changedPassword) {
-        console.log(changedPassword)
-        // router.push('/')
+        toast.success('Password changed. Login again to continue')
+        setLoading(false)
       } else {
         throw new Error('Unable to Change password.')
       }
     } catch (err) {
-      console.log('Error confirming signup:', err)
+      toast.error(err.message)
     }
+    setLoading(false)
   }
 
   const onSubmit = (data: IFormInputs) => {
-    try {
-      changePasswordHandler(data)
-    } catch (err) {
-      console.log(err)
-    }
+    changePasswordHandler(data)
   }
 
   return (
@@ -88,8 +89,8 @@ export const ChangePasswordForm: React.FC<Props> = (props: Props) => {
         />
         <HelperText valid={false}>{errors.password?.message}</HelperText>
       </Label>
-      <Button className="mt-6" block type="submit">
-        Change Password
+      <Button disabled={loading} className="mt-6 h-10" block type="submit">
+        {!loading ? <span>Change Password</span> : <Loader />}
       </Button>
     </form>
   )

@@ -39,10 +39,10 @@ Amplify.configure({
 })
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-    <Windmill>
-      <Component {...pageProps} />
-      <Toaster />
-    </Windmill>
-  )
+  <Windmill>
+    <Toaster />
+    <Component {...pageProps} />
+  </Windmill>
+)
 
 export default MyApp
