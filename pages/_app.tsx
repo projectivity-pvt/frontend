@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import { Windmill } from '@windmill/react-ui'
 import Amplify from 'aws-amplify'
 import { Toaster } from 'react-hot-toast'
+import windmill from 'styles/windmill'
 
 Amplify.configure({
   Auth: {
@@ -39,7 +40,7 @@ Amplify.configure({
 })
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <Windmill>
+  <Windmill theme={windmill}>
     <Toaster />
     <Component {...pageProps} />
   </Windmill>
