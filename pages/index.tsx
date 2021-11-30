@@ -9,6 +9,7 @@ import { NotificationPill } from '@components/molecules/NotificationPill/Notific
 import { HeaderText } from '@components/atoms/HeaderText/HeaderText'
 import { useQuery, gql } from '@apollo/client'
 import { GetEmployeeDetailsQuery } from 'types/types'
+import ActiveLink from '@components/atoms/ActiveLink/ActiveLink'
 
 const Home: NextPage = () => {
   const [user, setUser] = useState('')
@@ -58,6 +59,10 @@ const Home: NextPage = () => {
       <Link href="/login">
         <a className="bg-indigo-200 rounded p-2 text-indigo-600">Go to login</a>
       </Link>
+
+      <ActiveLink activeClassName="bg-rose-100 text-rose-600" href="/">
+        <a className="bg-indigo-200 rounded p-2 text-indigo-600">Homepage</a>
+      </ActiveLink>
 
       <Button
         onClick={() => handleSignout()}
