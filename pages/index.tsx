@@ -8,6 +8,7 @@ import { UserPill } from '@components/molecules/UserPill/UserPill'
 import { NotificationPill } from '@components/molecules/NotificationPill/NotificationPill'
 import { HeaderText } from '@components/atoms/HeaderText/HeaderText'
 import { useQuery, gql } from '@apollo/client'
+import { GetEmployeeDetailsQuery } from 'types/types'
 
 const Home: NextPage = () => {
   const [user, setUser] = useState('')
@@ -36,17 +37,15 @@ const Home: NextPage = () => {
   const query = gql`
     query MyQuery {
       getEmployeeDetails {
-        employeeName
-        businessAddress
         businessName
-        employeeLevel
+        employeeName
         employeePhoneNumber
       }
     }
   `
 
-  const { data } = useQuery(query)
-  console.log(data)
+  const { data } = useQuery<GetEmployeeDetailsQuery>(query)
+  console.log(data?.getEmployeeDetails?.employeeName)
 
   return (
     <>

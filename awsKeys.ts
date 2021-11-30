@@ -1,4 +1,5 @@
 ﻿export const awsKeys = {
+  aws_appsync_apiId: 'tx5co4ljbraqpeum4dl5vwnrym',
   aws_appsync_graphqlEndpoint:
     'https://j5zstez4fndozfir4bsmh27l5i.appsync-api.ap-south-1.amazonaws.com/graphql',
   aws_appsync_region: 'ap-south-1',
