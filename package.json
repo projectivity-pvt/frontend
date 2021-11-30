@@ -8,8 +8,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "do-nothing": "",
-    "download-schema": "apollo client:download-schema schema.json",
-    "codegen": "apollo client:codegen --target=typescript types && prettier --loglevel warn --end-of-line lf --write \"**/types/*.ts\""
+    "codegen": "amplify codegen types"
   },
   "dependencies": {
     "@apollo/client": "^3.5.5",
