@@ -33,6 +33,7 @@ export const ResendOtp = (props: Props) => {
       <Button
         disabled={resent}
         layout="link"
+        className="underline"
         size="small"
         onClick={resendHandler}
       >

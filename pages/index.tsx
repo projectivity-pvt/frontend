@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import { UserPill } from '@components/molecules/UserPill/UserPill'
 import { NotificationPill } from '@components/molecules/NotificationPill/NotificationPill'
 import { HeaderText } from '@components/atoms/HeaderText/HeaderText'
+import { useQuery, gql } from '@apollo/client'
 
 const Home: NextPage = () => {
   const [user, setUser] = useState('')
@@ -31,6 +32,21 @@ const Home: NextPage = () => {
       toast.error(err.message)
     }
   }
+
+  const query = gql`
+    query MyQuery {
+      getEmployeeDetails {
+        employeeName
+        businessAddress
+        businessName
+        employeeLevel
+        employeePhoneNumber
+      }
+    }
+  `
+
+  const { data } = useQuery(query)
+  console.log(data)
 
   return (
     <>

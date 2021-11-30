@@ -13,7 +13,6 @@ import { VerifyAccountForm } from '../VerifyAccountForm/VerifyAccountForm'
 interface IFormInputs {
   name: string
   mobile: string
-  email: string
   password: string
   agree: boolean
 }
@@ -26,10 +25,6 @@ const schema = yup
       .min(2, 'Name must be at least 2 characters long')
       .max(16, 'Name can not be more than 16 characters'),
     mobile: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-    email: yup
-      .string()
-      .email('Please enter a valid email')
-      .required('Required'),
     password: yup
       .string()
       .required('Required')
@@ -54,7 +49,7 @@ export const RegisterForm = () => {
   })
 
   async function signUpWithEmail(data: IFormInputs) {
-    const { email, password, name, mobile } = data
+    const { password, name, mobile } = data
     setLoading(true)
     try {
       const { user } = await Auth.signUp({
@@ -62,7 +57,7 @@ export const RegisterForm = () => {
         password,
         attributes: {
           name,
-          email,
+          'custom:user_type': 'ADMIN',
         },
       })
 
@@ -120,18 +115,6 @@ export const RegisterForm = () => {
               </span>
             </div>
             <HelperText valid={false}>{errors.mobile?.message}</HelperText>
-          </Label>
-          <Label className="mt-4">
-            <span>Email</span>
-            <Input
-              {...register('email')}
-              id="email"
-              name="email"
-              className="mt-1"
-              placeholder="john@doe.com"
-              css={undefined}
-            />
-            <HelperText valid={false}>{errors.email?.message}</HelperText>
           </Label>
           <Label className="mt-4">
             <span>Password</span>
