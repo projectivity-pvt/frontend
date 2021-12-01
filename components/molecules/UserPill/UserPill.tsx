@@ -5,7 +5,7 @@ interface Props {}
 export const UserPill = (props: Props) => {
   const a = 1
   return (
-    <div className="py-2 pl-2 pr-5 rounded-full bg-blue-50 flex gap-3 items-center">
+    <div className="py-2 pl-2 pr-5 rounded-full bg-white flex gap-3 items-center shadow-md">
       <div className="rounded-full bg-indigo-600 h-11 w-11 flex items-center justify-center text-xl text-white font-black">
         J
       </div>

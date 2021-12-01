@@ -9,6 +9,14 @@ import { useApollo } from 'apolloClient'
 import { ApolloProvider } from '@apollo/client'
 import { awsKeys } from 'awsKeys'
 import { useEffect } from 'react'
+import '../styles/nprogress.scss'
+import nProgress from 'nprogress'
+import { Router } from 'next/router'
+
+// configure nProgress events
+Router.events.on('routeChangeStart', nProgress.start)
+Router.events.on('routeChangeError', nProgress.done)
+Router.events.on('routeChangeComplete', nProgress.done)
 
 Amplify.configure({
   Auth: {

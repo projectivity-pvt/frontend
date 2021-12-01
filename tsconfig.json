@@ -22,6 +22,7 @@
       "@organisms/*": ["./components/organisms*"],
       "@templates/*": ["./components/templates*"],
       "@images/*": ["./public/images*"],
+      "@public/*": ["./public*"],
       "@utils/*": ["./utils*"],
       "@hooks/*": ["./hooks*"]
     }
