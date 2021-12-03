@@ -11,6 +11,7 @@ import { useQuery, gql } from '@apollo/client'
 import { GetEmployeeDetailsQuery } from 'types/types'
 import ActiveLink from '@components/atoms/ActiveLink/ActiveLink'
 import { DesktopSidebar } from '@components/organisms/DesktopSidebar/DesktopSidebar'
+import { ProfileForm } from '@components/organisms/ProfileForm/ProfileForm'
 
 const Home: NextPage = () => {
   const [user, setUser] = useState('')
@@ -52,16 +53,14 @@ const Home: NextPage = () => {
   return (
     <div className="flex h-screen bg-white dark:bg-gray-900">
       <DesktopSidebar />
-      <div className="flex flex-col flex-1 w-full overflow-y-auto px-4">
-        <div className="flex items-center py-4  sticky top-0 backdrop-filter backdrop-blur-lg gap-4">
+      <div className="flex flex-col flex-1 w-full overflow-y-auto ">
+        <div className="flex items-center p-4  sticky top-0 backdrop-filter backdrop-blur-sm gap-4">
           <HeaderText />
           <NotificationPill />
           <UserPill />
         </div>
-        <main className="">
-          <div className="h-96 bg-red-400">high div</div>
-          <div className="h-96 bg-yellow-400">high div</div>
-          <div className="h-96 bg-red-400">high div</div>
+        <main className="px-4">
+          <ProfileForm />
           <Link href="/login">
             <a className="bg-indigo-200 rounded p-2 text-indigo-600">
               Go to login
