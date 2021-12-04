@@ -9,7 +9,7 @@ module.exports = windmill({
   theme: {
     extend: {},
     fontFamily: {
-      sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      sans: ['Poppins', ...defaultTheme.fontFamily.sans],
     },
     colors: {
       transparent: 'transparent',
@@ -22,6 +22,7 @@ module.exports = windmill({
       bluegray: colors.blueGray,
       rose: colors.rose,
       indigo: colors.indigo,
+      primary: colors.indigo,
     },
   },
   variants: {

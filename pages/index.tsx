@@ -12,6 +12,11 @@ import { GetEmployeeDetailsQuery } from 'types/types'
 import ActiveLink from '@components/atoms/ActiveLink/ActiveLink'
 import { DesktopSidebar } from '@components/organisms/DesktopSidebar/DesktopSidebar'
 import { ProfileForm } from '@components/organisms/ProfileForm/ProfileForm'
+import { StatsCard } from '@components/molecules/StatsCard/StatsCard'
+import { VendorProfileCard } from '@components/organisms/VendorProfileCard/VendorProfileCard'
+import { SectionHeading } from '@components/molecules/SectionHeading/SectionHeading'
+import { VendorProjectListItem } from '@components/organisms/VendorProjectListItem/VendorProjectListItem'
+import { VendorChart } from '@components/organisms/VendorChart/VendorChart'
 
 const Home: NextPage = () => {
   const [user, setUser] = useState('')
@@ -60,6 +65,12 @@ const Home: NextPage = () => {
           <UserPill />
         </div>
         <main className="px-4">
+          <StatsCard />
+          <VendorChart />
+          <VendorProfileCard />
+          <SectionHeading />
+          <VendorProjectListItem />
+
           <ProfileForm />
           <Link href="/login">
             <a className="bg-indigo-200 rounded p-2 text-indigo-600">
