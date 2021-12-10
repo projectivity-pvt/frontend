@@ -17,6 +17,14 @@ import { VendorProfileCard } from '@components/organisms/VendorProfileCard/Vendo
 import { SectionHeading } from '@components/molecules/SectionHeading/SectionHeading'
 import { VendorProjectListItem } from '@components/organisms/VendorProjectListItem/VendorProjectListItem'
 import { VendorChart } from '@components/organisms/VendorChart/VendorChart'
+import { EmptyContract } from '@components/molecules/EmptyContract/EmptyContract'
+import { VendorProjectCard } from '@components/organisms/VendorProjectCard/VendorProjectCard'
+import { Tabs } from '@components/molecules/Tabs/Tabs'
+import { VendorContractTable } from '@components/organisms/VendorContractsTable/VendorContractTable'
+import { VendorEarningCard } from '@components/molecules/VendorEarningCard/VendorEarningCard'
+import { VendorEarningReport } from '@components/organisms/VendorEarningReport/VendorEarningReport'
+import { PendingPaymentCard } from '@components/organisms/PendingPaymentCard/PendingPaymentCard'
+import { VendorPaymentTable } from '@components/organisms/VendorPaymentTable/VendorPaymentTable'
 
 const Home: NextPage = () => {
   const [user, setUser] = useState('')
@@ -59,12 +67,22 @@ const Home: NextPage = () => {
     <div className="flex h-screen bg-white dark:bg-gray-900">
       <DesktopSidebar />
       <div className="flex flex-col flex-1 w-full overflow-y-auto ">
-        <div className="flex items-center p-4  sticky top-0 backdrop-filter backdrop-blur-sm gap-4">
+        <div className="flex items-center p-4 border-b z-[9999] sticky top-0 backdrop-filter backdrop-blur-sm gap-4">
           <HeaderText />
           <NotificationPill />
           <UserPill />
         </div>
         <main className="px-4">
+          <EmptyContract />
+          <VendorPaymentTable />
+          <PendingPaymentCard />
+          <VendorEarningReport />
+          <VendorEarningCard />
+          <VendorProjectCard />
+          <Tabs />
+          <div className="mt-5"></div>
+          <VendorContractTable />
+          <div className="mt-5"></div>
           <StatsCard />
           <VendorChart />
           <VendorProfileCard />
