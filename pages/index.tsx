@@ -25,6 +25,10 @@ import { VendorEarningCard } from '@components/molecules/VendorEarningCard/Vendo
 import { VendorEarningReport } from '@components/organisms/VendorEarningReport/VendorEarningReport'
 import { PendingPaymentCard } from '@components/organisms/PendingPaymentCard/PendingPaymentCard'
 import { VendorPaymentTable } from '@components/organisms/VendorPaymentTable/VendorPaymentTable'
+import { Breadcrumb } from '@components/molecules/Breadcrumb/Breadcrumb'
+import { ProgressRing } from '@components/molecules/ProgressRing/ProgressRing'
+import { ProjectHeader } from '@components/organisms/ProjectHeader/ProjectHeader'
+import { ProjectDetailItem } from '@components/molecules/ProjectDetailItem/ProjectDetailItem'
 
 const Home: NextPage = () => {
   const [user, setUser] = useState('')
@@ -74,6 +78,9 @@ const Home: NextPage = () => {
         </div>
         <main className="px-4">
           <EmptyContract />
+          <ProjectDetailItem />
+          <ProjectHeader />
+          <Breadcrumb />
           <VendorPaymentTable />
           <PendingPaymentCard />
           <VendorEarningReport />

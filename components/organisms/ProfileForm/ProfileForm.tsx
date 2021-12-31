@@ -148,6 +148,7 @@ export const ProfileForm = (props: Props) => {
               <span className="font-bold md:font-medium">Pin Code</span>
               <Input
                 // {...register('name')}
+                inputMode="numeric"
                 id="name"
                 name="name"
                 className="mt-1"
