@@ -3,11 +3,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
-import { Auth } from 'aws-amplify'
 import Image from 'next/image'
 import { phoneRegExp } from '@utils//constants'
 import { Loader } from '@components/atoms/Loader/Loader'
-import toast from 'react-hot-toast'
+import { handleForgotPassword } from '@components/globalStates/UserGlobal/utils'
 import { ChangePasswordForm } from '../ChangePasswordForm/ChangePasswordForm'
 
 interface IFormInputs {
@@ -36,15 +35,9 @@ export const ForgotPasswordForm = () => {
   async function forgotPasswordHandler(data: IFormInputs) {
     const { mobile } = data
     setLoading(true)
-    try {
-      const resetUser = await Auth.forgotPassword(`+91${mobile}`)
-      if (resetUser) {
-        setCodeSent(true)
-        setLoading(false)
-        toast.success('Please verify the OTP to reset your password')
-      }
-    } catch (err) {
-      toast.error(err.message)
+    const forgotPasswordSuccess = await handleForgotPassword(mobile)
+    if (forgotPasswordSuccess) {
+      setCodeSent(true)
     }
     setLoading(false)
   }

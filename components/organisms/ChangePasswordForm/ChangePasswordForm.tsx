@@ -3,9 +3,8 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
-import { Auth } from 'aws-amplify'
 import { Loader } from '@components/atoms/Loader/Loader'
-import toast from 'react-hot-toast'
+import { handleChangePassword } from '@components/globalStates/UserGlobal/utils'
 
 interface Props {
   username: string
@@ -41,21 +40,7 @@ export const ChangePasswordForm: React.FC<Props> = (props: Props) => {
   const changePasswordHandler = async (data: IFormInputs) => {
     const { code, password } = data
     setLoading(true)
-    try {
-      const changedPassword = await Auth.forgotPasswordSubmit(
-        `+91${username}`,
-        code,
-        password
-      )
-      if (changedPassword) {
-        toast.success('Password changed. Login again to continue')
-        setLoading(false)
-      } else {
-        throw new Error('Unable to Change password.')
-      }
-    } catch (err) {
-      toast.error(err.message)
-    }
+    await handleChangePassword(code, password, username)
     setLoading(false)
   }
 

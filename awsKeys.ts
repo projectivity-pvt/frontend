@@ -5,8 +5,8 @@
   aws_appsync_region: 'ap-south-1',
   aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS',
   userPoolRegion: 'ap-south-1',
-  userPoolId: 'ap-south-1_uI1MOWfcg',
-  userPoolWebClientId: '73fmia36npl6f75s9mdqr67ofr',
+  userPoolId: 'ap-south-1_J1SHljYiA',
+  userPoolWebClientId: '1a5s45s20jlhihju3qj4f7ejie',
   cookieStorage: {
     path: '/',
     domain: 'localhost',

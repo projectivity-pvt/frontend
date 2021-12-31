@@ -1,18 +1,20 @@
+import { useReactiveVar } from '@apollo/client'
+import { userGlobalState } from '@components/globalStates/UserGlobal/UserGlobalState'
 import React from 'react'
 
 interface Props {}
 
 export const UserPill = (props: Props) => {
-  const a = 1
+  const { user } = useReactiveVar(userGlobalState)
   return (
     <div className="py-2 pl-2 pr-5 rounded-full bg-white flex gap-3 items-center shadow-md">
       <div className="rounded-full bg-indigo-600 h-11 w-11 flex items-center justify-center text-xl text-white font-black">
         J
       </div>
       <div className="flex flex-col">
-        <span className="text-base truncate font-semibold">John Doe</span>
+        <span className="text-base truncate font-semibold">{user?.name}</span>
         <span className="font-normal truncate text-sm text-gray-500">
-          Line Producer
+          {user?.phone}
         </span>
       </div>
     </div>

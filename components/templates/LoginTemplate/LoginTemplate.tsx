@@ -3,7 +3,10 @@ import Image from 'next/image'
 import { LoginForm } from '@components/organisms/LoginForm/LoginForm'
 import { RegisterForm } from '@components/organisms/RegisterForm/RegisterForm'
 import { ForgotPasswordForm } from '@components/organisms/ForgotPasswordForm/ForgotPasswordForm'
-import { Auth } from 'aws-amplify'
+import { useReactiveVar } from '@apollo/client'
+import { userGlobalState } from '@components/globalStates/UserGlobal/UserGlobalState'
+import { useRouter } from 'next/router'
+import toast from 'react-hot-toast'
 
 enum AuthActionEnum {
   'LOGIN' = 'LOGIN',
@@ -17,6 +20,8 @@ interface AuthState {
 }
 
 export const LoginTemplate = () => {
+  const router = useRouter()
+
   const authReducer = (state: AuthState, action: AuthActionEnum): AuthState => {
     switch (action) {
       case 'LOGIN': {
@@ -50,6 +55,15 @@ export const LoginTemplate = () => {
     header: 'Login',
   }
   const [authState, dispatch] = useReducer(authReducer, initialAuthState)
+  const { user } = useReactiveVar(userGlobalState)
+
+  useEffect(() => {
+    if (user?.id) {
+      router.push('/')
+      toast.success('Already logged in')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div>

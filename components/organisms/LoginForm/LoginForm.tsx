@@ -5,10 +5,9 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
 import { phoneRegExp } from '@utils//constants'
 import Image from 'next/image'
-import { Auth } from 'aws-amplify'
 import { Loader } from '@components/atoms/Loader/Loader'
 import { useRouter } from 'next/router'
-import toast from 'react-hot-toast'
+import { handleLogin } from '@components/globalStates/UserGlobal/utils'
 
 interface IFormInputs {
   mobile: string
@@ -40,19 +39,11 @@ export const LoginForm = () => {
   const loginWithMobile = async (data: IFormInputs) => {
     const { mobile, password } = data
     setLoading(true)
-    try {
-      const amplifyUser = await Auth.signIn(`+91${mobile}`, password)
-      if (amplifyUser) {
-        setLoading(false)
-        toast.success('Logged In successfully')
-        router.push('/')
-      } else {
-        throw new Error('Unable to Login.')
-      }
-    } catch (error) {
-      toast.error(error.message)
-    }
+    const loginStatus = await handleLogin(mobile, password)
     setLoading(false)
+    if (loginStatus) {
+      router.push('/')
+    }
   }
 
   const onSubmit = (data: IFormInputs) => {
@@ -71,7 +62,7 @@ export const LoginForm = () => {
           <Input
             {...register('mobile')}
             type="tel"
-            maxLength="10"
+            maxLength={10}
             id="mobile"
             name="mobile"
             className="mt-1 pl-10"

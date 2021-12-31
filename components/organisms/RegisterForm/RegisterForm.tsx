@@ -3,11 +3,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
-import { Auth } from 'aws-amplify'
 import { phoneRegExp } from '@utils//constants'
 import Image from 'next/image'
 import { Loader } from '@components/atoms/Loader/Loader'
-import toast from 'react-hot-toast'
+import { handleRegister } from '@components/globalStates/UserGlobal/utils'
 import { VerifyAccountForm } from '../VerifyAccountForm/VerifyAccountForm'
 
 interface IFormInputs {
@@ -51,23 +50,9 @@ export const RegisterForm = () => {
   async function signUpWithEmail(data: IFormInputs) {
     const { password, name, mobile } = data
     setLoading(true)
-    try {
-      const { user } = await Auth.signUp({
-        username: `+91${mobile}`,
-        password,
-        attributes: {
-          name,
-          'custom:user_type': 'ADMIN',
-        },
-      })
-
-      if (user && user.getUsername()) {
-        setUserData({ username: user.getUsername(), password })
-        // toast.success(`👋 Hello, ${user.getUsername()}`)
-        toast.success(`🚦 Please verify your mobile number to continue`)
-      }
-    } catch (error) {
-      toast.error(error.message)
+    const registerSuccess = await handleRegister(mobile, password, name)
+    if (registerSuccess) {
+      setUserData({ username: registerSuccess.getUsername(), password })
     }
     setLoading(false)
   }

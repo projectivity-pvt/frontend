@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
-import { Auth } from 'aws-amplify'
 import { Loader } from '@components/atoms/Loader/Loader'
-import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
+import { handleVerificationCode } from '@components/globalStates/UserGlobal/utils'
 import { ResendOtp } from '../ResendOtp/ResendOtp'
 
 interface Props {
@@ -43,18 +42,13 @@ export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
 
   const verifyCode = async (code: string) => {
     setLoading(true)
-    try {
-      await Auth.confirmSignUp(username, code)
-      const amplifyUser = await Auth.signIn(username, password)
-      if (amplifyUser) {
-        toast.success(`👋 Hello, ${amplifyUser?.attributes?.name}`)
-        setLoading(false)
-        router.push('/')
-      } else {
-        throw new Error('Unable to Login.')
-      }
-    } catch (err) {
-      toast.error(err.message)
+    const verificationSuccess = await handleVerificationCode(
+      code,
+      username,
+      password
+    )
+    if (verificationSuccess) {
+      router.push('/')
     }
     setLoading(false)
   }
