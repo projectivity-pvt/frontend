@@ -50,6 +50,7 @@ export const LoginForm = (props: Props) => {
 
   const loginWithMobile = async (data: IFormInputs) => {
     const { mobile, password } = data
+    debugger
     setLoading(true)
     const loginStatus = await handleLogin(mobile, password)
     setLoading(false)
