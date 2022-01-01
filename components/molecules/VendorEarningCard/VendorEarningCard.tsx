@@ -2,9 +2,7 @@ import React from 'react'
 import MedalIcon from 'public/images/medal.svg'
 import { EarningPercent } from '../EarningPercent/EarningPercent'
 
-interface Props {}
-
-export const VendorEarningCard = (props: Props) => (
+export const VendorEarningCard = () => (
   <div className="border p-4 rounded-lg">
     <div className="flex items-center gap-5 mb-6">
       <div className="rounded-full flex items-center justify-center h-11 w-11 shadow-md">

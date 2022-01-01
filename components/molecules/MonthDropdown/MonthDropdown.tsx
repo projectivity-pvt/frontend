@@ -1,14 +1,11 @@
-import { Listbox, Menu } from '@headlessui/react'
-import { DropdownItem, Transition } from '@windmill/react-ui'
-import React, { Fragment, useState } from 'react'
+import { Menu } from '@headlessui/react'
+import React, { useState } from 'react'
 import ChevronDown from 'public/images/arrow/chevron-down.svg'
 
-interface Props {}
-
-export const MonthDropdown = (props: Props) => {
+export const MonthDropdown = () => {
   const [month, setMonth] = useState('July')
   return (
-    <div>
+    <div onClick={() => setMonth('Aug')}>
       <Menu as="div" className="relative inline-block text-left">
         <Menu.Button className="inline-flex items-center justify-center border w-full px-4 py-2 text-sm font-medium  rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
           {month}

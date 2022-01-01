@@ -2,9 +2,7 @@ import { useReactiveVar } from '@apollo/client'
 import { userGlobalState } from '@components/globalStates/UserGlobal/UserGlobalState'
 import React from 'react'
 
-interface Props {}
-
-export const UserPill = (props: Props) => {
+export const UserPill = () => {
   const { user } = useReactiveVar(userGlobalState)
   return (
     <div className="py-2 pl-2 pr-5 rounded-full bg-white flex gap-3 items-center shadow-md">

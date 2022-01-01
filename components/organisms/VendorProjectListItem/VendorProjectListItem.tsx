@@ -2,9 +2,7 @@ import { Badge } from '@windmill/react-ui'
 import React from 'react'
 import ClockIcon from '../../../public/images/clock-outline.svg'
 
-interface Props {}
-
-export const VendorProjectListItem = (props: Props) => (
+export const VendorProjectListItem = () => (
   <div className="bg-cool-gray-100 p-3 rounded-lg flex items-center">
     <div className="avatar rounded-full bg-primary-600 text-white flex items-center justify-center h-10 w-10 md:h-14 md:w-14 mr-2 md:mr-5">
       A

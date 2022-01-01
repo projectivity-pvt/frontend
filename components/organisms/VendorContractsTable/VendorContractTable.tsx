@@ -10,9 +10,7 @@ import {
 } from '@windmill/react-ui'
 import React from 'react'
 
-interface Props {}
-
-export const VendorContractTable = (props: Props) => (
+export const VendorContractTable = () => (
   <div>
     <TableContainer>
       <Table>

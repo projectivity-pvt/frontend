@@ -57,7 +57,7 @@ export const ForgotPasswordForm = () => {
               <Input
                 {...register('mobile')}
                 type="tel"
-                maxLength="10"
+                maxLength={10}
                 id="mobile"
                 name="mobile"
                 className="mt-1 pl-10"

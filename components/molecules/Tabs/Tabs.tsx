@@ -1,8 +1,6 @@
 import React from 'react'
 
-interface Props {}
-
-export const Tabs = (props: Props) => (
+export const Tabs = () => (
   <div className="border-b border-gray-200 dark:border-gray-700">
     <ul className="flex flex-wrap -mb-px">
       <li className="mr-2">

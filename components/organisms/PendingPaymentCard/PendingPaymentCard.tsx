@@ -2,9 +2,7 @@ import { Avatar } from '@components/atoms/Avatar/Avatar'
 import React from 'react'
 import RightArrowCircle from '../../../public/images/right-arrow-circle.svg'
 
-interface Props {}
-
-export const PendingPaymentCard = (props: Props) => (
+export const PendingPaymentCard = () => (
   <div className="border rounded-lg p-4">
     <div className="flex items-center justify-between mb-6">
       <p className="text-xl font-semibold">Pending</p>

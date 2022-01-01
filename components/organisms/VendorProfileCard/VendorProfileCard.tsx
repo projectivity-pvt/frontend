@@ -1,9 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-interface Props {}
-
-export const VendorProfileCard = (props: Props) => (
+export const VendorProfileCard = () => (
   <div className="border rounded-lg p-5">
     <div className="my-4 text-center">
       <div className="avatar rounded-full bg-primary-600 mx-auto flex items-center justify-center h-24 w-24 mb-5">

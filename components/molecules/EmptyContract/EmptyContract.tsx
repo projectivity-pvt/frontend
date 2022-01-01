@@ -4,9 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import RightArrowIcon from '../../../public/images/right-arrow-circle.svg'
 
-interface Props {}
-
-export const EmptyContract = (props: Props) => (
+export const EmptyContract = () => (
   <div className="flex flex-col items-center justify-center">
     <Image
       src="/images/niku3dsearch.png"

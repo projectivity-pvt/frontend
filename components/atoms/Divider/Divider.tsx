@@ -1,7 +1,5 @@
 import React from 'react'
 
-interface Props {}
-
-export const Divider = (props: Props) => (
+export const Divider = () => (
   <div className="border-t border-gray-200 my-5" aria-hidden="true" />
 )

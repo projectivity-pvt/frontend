@@ -8,18 +8,19 @@ import {
 } from '@apollo/client'
 import { awsKeys } from 'awsKeys'
 import { Auth } from 'aws-amplify'
-import { createAuthLink } from 'aws-appsync-auth-link'
+import { AUTH_TYPE, createAuthLink } from 'aws-appsync-auth-link'
 
 let apolloClient: ApolloClient<NormalizedCacheObject>
 const url = awsKeys.aws_appsync_graphqlEndpoint
 const region = awsKeys.aws_appsync_region
 const auth = {
-  type: awsKeys.aws_appsync_authenticationType,
+  type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
   jwtToken: async () =>
     (await Auth.currentSession()).getAccessToken().getJwtToken(),
 }
 
 const link = ApolloLink.from([
+  // @ts-ignore
   createAuthLink({ url, region, auth }),
   createHttpLink({ uri: url }),
 ])

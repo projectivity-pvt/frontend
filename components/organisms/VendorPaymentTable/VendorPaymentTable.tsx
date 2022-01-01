@@ -12,9 +12,7 @@ import {
 import React from 'react'
 import DownloadIcon from 'public/images/arrow/download.svg'
 
-interface Props {}
-
-export const VendorPaymentTable = (props: Props) => (
+export const VendorPaymentTable = () => (
   <TableContainer>
     <Table>
       <TableHeader>

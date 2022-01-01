@@ -8,8 +8,6 @@ import {
   Tooltip,
 } from 'chart.js'
 
-interface Props {}
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip)
 
 const options = {
@@ -52,7 +50,7 @@ export const data = {
   ],
 }
 
-export const VendorChart = (props: Props) => (
+export const VendorChart = () => (
   <div>
     <Bar options={options} data={data} />
   </div>

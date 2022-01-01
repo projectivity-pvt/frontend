@@ -1,15 +1,15 @@
 import Image from 'next/image'
-import React, { ReactNode } from 'react'
+import React from 'react'
 
-interface Props {
-  bgColor: string
-  iconColor: string
-  title: string
-  value: string
-  icon: ReactNode
-}
+// interface Props {
+//   bgColor: string
+//   iconColor: string
+//   title: string
+//   value: string
+//   icon: ReactNode
+// }
 
-export const StatsCard = (props: Props) => (
+export const StatsCard = () => (
   <div className="border rounded-lg p-3 flex items-center gap-4">
     <div className="rounded-lg bg-green-200 h-14 w-14 flex items-center justify-center">
       <Image src="/images/notification.svg" height={24} width={24} />

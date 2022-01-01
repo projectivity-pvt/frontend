@@ -1,9 +1,7 @@
 import React from 'react'
 import ArrowRight from 'public/images/arrow/arrow-right.svg'
 
-interface Props {}
-
-export const EarningPercent = (props: Props) => (
+export const EarningPercent = () => (
   <div className="flex items-center gap-2">
     <div className="bg-red-300 flex items-center justify-center rounded-full h-4 w-4">
       <ArrowRight

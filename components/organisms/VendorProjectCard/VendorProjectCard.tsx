@@ -3,9 +3,7 @@ import { Badge } from '@windmill/react-ui'
 import React from 'react'
 import RightArrowIcon from '../../../public/images/right-arrow-circle.svg'
 
-interface Props {}
-
-export const VendorProjectCard = (props: Props) => (
+export const VendorProjectCard = () => (
   <div className="border rounded-lg p-3">
     <div className="flex items-center gap-2">
       <Avatar initial="A" size={47} />

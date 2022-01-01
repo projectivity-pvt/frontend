@@ -1,9 +1,7 @@
 import { ProgressRing } from '@components/molecules/ProgressRing/ProgressRing'
 import React from 'react'
 
-interface Props {}
-
-export const ProjectHeader = (props: Props) => (
+export const ProjectHeader = () => (
   <div>
     <h1 className="font-bold text-3xl mb-1">
       Project Name Burger Singh Advertisement
