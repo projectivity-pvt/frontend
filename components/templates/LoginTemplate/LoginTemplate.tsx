@@ -7,11 +7,13 @@ import { useReactiveVar } from '@apollo/client'
 import { userGlobalState } from '@components/globalStates/UserGlobal/UserGlobalState'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
+import { MobileVerificationForm } from '@components/organisms/MobileVerificationForm/MobileVerificationForm'
 
 enum AuthActionEnum {
   'LOGIN' = 'LOGIN',
   'REGISTER' = 'REGISTER',
   'FORGOT_PASSWORD' = 'FORGOT_PASSWORD',
+  'MOBILE_VERIFICATION' = 'MOBILE_VERIFICATION',
 }
 
 interface AuthState {
@@ -43,6 +45,13 @@ export const LoginTemplate = () => {
           ...state,
           type: action,
           header: 'Reset Password',
+        }
+      }
+      case 'MOBILE_VERIFICATION': {
+        return {
+          ...state,
+          type: action,
+          header: 'Verify your mobile number',
         }
       }
       default: {
@@ -97,6 +106,7 @@ export const LoginTemplate = () => {
                     LOGIN: <LoginForm />,
                     REGISTER: <RegisterForm />,
                     FORGOT_PASSWORD: <ForgotPasswordForm />,
+                    MOBILE_VERIFICATION: <MobileVerificationForm />,
                   }[authState.type]
                 }
                 <hr className="my-8" />
@@ -126,6 +136,14 @@ export const LoginTemplate = () => {
                     </span>
                   </p>
                 )}
+                <p className="mt-2">
+                  <span
+                    onClick={() => dispatch(AuthActionEnum.MOBILE_VERIFICATION)}
+                    className=" cursor-pointer text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                  >
+                    Verify your mobile number
+                  </span>
+                </p>
                 <p className="mt-2">
                   <span
                     onClick={() => dispatch(AuthActionEnum.FORGOT_PASSWORD)}

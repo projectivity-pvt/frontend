@@ -1,11 +1,16 @@
 import { makeVar } from '@apollo/client'
 
+export enum UserType {
+  BUSINESS_ADMIN = 'BUSINESS_ADMIN',
+  BUSINESS_USER = 'BUSINESS_USER',
+  VENDOR = 'VENDOR',
+}
 export interface User {
   name: string
   id: string
   phone: string
   phone_verified: boolean
-  type: string
+  type: UserType
 }
 
 export interface UserGlobal {

@@ -1,7 +1,7 @@
-import { Auth } from 'aws-amplify'
 import { Button } from '@windmill/react-ui'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
+import { resendConfirmationCode } from '@components/globalStates/UserGlobal/utils'
 
 interface Props {
   username: string
@@ -11,17 +11,9 @@ export const ResendOtp = (props: Props) => {
   const { username } = props
   const [resent, setResent] = useState(false)
 
-  async function resendConfirmationCode() {
-    try {
-      await Auth.resendSignUp(username)
-    } catch (err) {
-      toast.error(err.message)
-    }
-  }
-
   const resendHandler = () => {
     setResent(true)
-    toast.promise(resendConfirmationCode(), {
+    toast.promise(resendConfirmationCode(username), {
       loading: 'Resending OTP...',
       success: <b>A new OTP has been sent to you</b>,
       error: <b>Could not send new OTP.</b>,

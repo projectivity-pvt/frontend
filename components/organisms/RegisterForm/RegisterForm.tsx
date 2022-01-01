@@ -7,6 +7,8 @@ import { phoneRegExp } from '@utils//constants'
 import Image from 'next/image'
 import { Loader } from '@components/atoms/Loader/Loader'
 import { handleRegister } from '@components/globalStates/UserGlobal/utils'
+import { UserTypeSelector } from '@components/molecules/UserTypeSelector/UserTypeSelector'
+import { UserType } from '@components/globalStates/UserGlobal/UserGlobalState'
 import { VerifyAccountForm } from '../VerifyAccountForm/VerifyAccountForm'
 
 interface IFormInputs {
@@ -38,6 +40,7 @@ export const RegisterForm = () => {
     username: '',
     password: '',
   })
+  const [userType, setUserType] = useState(UserType.BUSINESS_ADMIN)
   const [loading, setLoading] = useState(false)
   const {
     register,
@@ -50,7 +53,12 @@ export const RegisterForm = () => {
   async function signUpWithEmail(data: IFormInputs) {
     const { password, name, mobile } = data
     setLoading(true)
-    const registerSuccess = await handleRegister(mobile, password, name)
+    const registerSuccess = await handleRegister(
+      mobile,
+      password,
+      name,
+      userType
+    )
     if (registerSuccess) {
       setUserData({ username: registerSuccess.getUsername(), password })
     }
@@ -84,7 +92,7 @@ export const RegisterForm = () => {
               <Input
                 {...register('mobile')}
                 type="tel"
-                maxLength="10"
+                maxLength={10}
                 id="mobile"
                 name="mobile"
                 className="mt-1 pl-10"
@@ -114,6 +122,9 @@ export const RegisterForm = () => {
             />
             <HelperText valid={false}>{errors.password?.message}</HelperText>
           </Label>
+
+          <UserTypeSelector userType={userType} setUserType={setUserType} />
+
           <Label className="mt-6" check>
             <Input
               {...register('agree')}
@@ -121,9 +132,11 @@ export const RegisterForm = () => {
               name="agree"
               type="checkbox"
               css={undefined}
+              checked
             />
             <span className="ml-2">
-              I agree to the <span className="underline">privacy policy</span>
+              I agree to the{' '}
+              <span className="underline cursor-pointer">privacy policy</span>
             </span>
           </Label>
           <HelperText className="block" valid={false}>

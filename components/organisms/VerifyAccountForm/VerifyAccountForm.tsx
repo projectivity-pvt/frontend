@@ -5,7 +5,11 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup'
 import * as yup from 'yup'
 import { Loader } from '@components/atoms/Loader/Loader'
 import { useRouter } from 'next/router'
-import { handleVerificationCode } from '@components/globalStates/UserGlobal/utils'
+import {
+  getUserTypeFromAmplify,
+  handleVerificationCode,
+  redirectUser,
+} from '@components/globalStates/UserGlobal/utils'
 import { ResendOtp } from '../ResendOtp/ResendOtp'
 
 interface Props {
@@ -48,7 +52,8 @@ export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
       password
     )
     if (verificationSuccess) {
-      router.push('/')
+      const userType = getUserTypeFromAmplify(verificationSuccess)
+      redirectUser(userType, router)
     }
     setLoading(false)
   }
@@ -58,22 +63,28 @@ export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Label>
-        <span>Verification Code</span>
-        <Input
-          {...register('code')}
-          id="code"
-          name="code"
-          className="mt-1"
-          css={undefined}
-        />
-        <HelperText valid={false}>{errors.code?.message}</HelperText>
-        <ResendOtp username={username} />
-      </Label>
-      <Button disabled={loading} className="mt-6 h-10" block type="submit">
-        {!loading ? <span>Verify and Login</span> : <Loader />}
-      </Button>
-    </form>
+    <>
+      <p className="text-sm mb-5">
+        Verify your account linked with
+        <span className="font-bold ml-2 text-primary-600">{username}</span>
+      </p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Label>
+          <span>Verification Code</span>
+          <Input
+            {...register('code')}
+            id="code"
+            name="code"
+            className="mt-1"
+            css={undefined}
+          />
+          <HelperText valid={false}>{errors.code?.message}</HelperText>
+          <ResendOtp username={username} />
+        </Label>
+        <Button disabled={loading} className="mt-6 h-10" block type="submit">
+          {!loading ? <span>Verify and Login</span> : <Loader />}
+        </Button>
+      </form>
+    </>
   )
 }

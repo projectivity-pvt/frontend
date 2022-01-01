@@ -1,6 +1,26 @@
 import { Auth } from 'aws-amplify'
+import { NextRouter } from 'next/router'
 import toast from 'react-hot-toast'
-import { User, userGlobalState } from './UserGlobalState'
+import { User, userGlobalState, UserType } from './UserGlobalState'
+
+export const getUserTypeFromAmplify = (amplifyUser: any): UserType =>
+  amplifyUser?.attributes['custom:user_type']
+
+export const redirectUser = (
+  userType: UserType,
+  router: NextRouter,
+  pathVendor?: string,
+  pathBusiness?: string
+) => {
+  if (userType === UserType.VENDOR) {
+    router.push(pathVendor || '/vendor')
+  } else if (
+    userType === UserType.BUSINESS_ADMIN ||
+    userType === UserType.BUSINESS_USER
+  ) {
+    router.push(pathBusiness || '/business')
+  }
+}
 
 export const setUserGlobalState = (user: User) => {
   userGlobalState({
@@ -61,8 +81,8 @@ export const handleSignout = async () => {
 export const handleLogin = async (
   mobile: string,
   password: string
-): Promise<boolean> => {
-  let success = false
+): Promise<any | null> => {
+  let success = null
   try {
     const amplifyUser = await Auth.signIn(`+91${mobile}`, password)
     if (amplifyUser) {
@@ -70,7 +90,7 @@ export const handleLogin = async (
         setUserGlobalStateFromAmplify(amplifyUser)
       }
       toast.success('Logged In successfully')
-      success = true
+      success = amplifyUser
     } else {
       throw new Error('Unable to Login.')
     }
@@ -83,7 +103,8 @@ export const handleLogin = async (
 export const handleRegister = async (
   mobile: string,
   password: string,
-  name: string
+  name: string,
+  userType: UserType
 ): Promise<any | null> => {
   try {
     const { user } = await Auth.signUp({
@@ -91,12 +112,12 @@ export const handleRegister = async (
       password,
       attributes: {
         name,
-        'custom:user_type': 'ADMIN',
+        'custom:user_type': userType,
       },
     })
 
     if (user && user.getUsername()) {
-      toast.success(`🚦 Please verify your mobile number to continue`)
+      toast.success(`Please verify your mobile number to continue`)
       return user
     }
   } catch (error: any) {
@@ -109,8 +130,8 @@ export const handleVerificationCode = async (
   code: string,
   username: string,
   password: string
-): Promise<boolean> => {
-  let success = false
+): Promise<any | null> => {
+  let success = null
   try {
     await Auth.confirmSignUp(username, code)
     const amplifyUser = await Auth.signIn(username, password)
@@ -119,7 +140,7 @@ export const handleVerificationCode = async (
         setUserGlobalStateFromAmplify(amplifyUser)
       }
       toast.success(`👋 Hello, ${amplifyUser?.attributes?.name}`)
-      success = true
+      success = amplifyUser
     } else {
       throw new Error('Unable to Verify code. Please try again later')
     }
@@ -161,6 +182,17 @@ export const handleChangePassword = async (
       success = true
       toast.success('Password changed. Login again to continue')
     }
+  } catch (err: any) {
+    toast.error(err.message)
+  }
+  return success
+}
+
+export async function resendConfirmationCode(username: string) {
+  let success = false
+  try {
+    await Auth.resendSignUp(username)
+    success = true
   } catch (err: any) {
     toast.error(err.message)
   }

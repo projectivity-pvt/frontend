@@ -7,8 +7,16 @@ import { phoneRegExp } from '@utils//constants'
 import Image from 'next/image'
 import { Loader } from '@components/atoms/Loader/Loader'
 import { useRouter } from 'next/router'
-import { handleLogin } from '@components/globalStates/UserGlobal/utils'
+import {
+  getUserTypeFromAmplify,
+  handleLogin,
+  redirectUser,
+} from '@components/globalStates/UserGlobal/utils'
 
+interface Props {
+  callBack?: (data: IFormInputs) => void
+  submitText?: string
+}
 interface IFormInputs {
   mobile: string
   password: string
@@ -16,7 +24,10 @@ interface IFormInputs {
 
 const schema = yup
   .object({
-    mobile: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+    mobile: yup
+      .string()
+      .required('Required')
+      .matches(phoneRegExp, 'Phone number is not valid'),
     password: yup
       .string()
       .required('Required')
@@ -25,7 +36,8 @@ const schema = yup
   })
   .required()
 
-export const LoginForm = () => {
+export const LoginForm = (props: Props) => {
+  const { callBack, submitText = 'Log In' } = props
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const {
@@ -42,15 +54,17 @@ export const LoginForm = () => {
     const loginStatus = await handleLogin(mobile, password)
     setLoading(false)
     if (loginStatus) {
-      router.push('/')
+      const userType = getUserTypeFromAmplify(loginStatus)
+      redirectUser(userType, router)
     }
   }
 
   const onSubmit = (data: IFormInputs) => {
-    try {
-      loginWithMobile(data)
-    } catch (err) {
+    if (callBack) {
+      callBack(data)
       setLoading(false)
+    } else {
+      loginWithMobile(data)
     }
   }
 
@@ -93,8 +107,13 @@ export const LoginForm = () => {
         <HelperText valid={false}>{errors.password?.message}</HelperText>
       </Label>
       <Button disabled={loading} className="mt-6 h-10" block type="submit">
-        {!loading ? <span>Log In</span> : <Loader />}
+        {!loading ? <span>{submitText}</span> : <Loader />}
       </Button>
     </form>
   )
+}
+
+LoginForm.defaultProps = {
+  callBack: undefined,
+  submitText: 'Log In',
 }
