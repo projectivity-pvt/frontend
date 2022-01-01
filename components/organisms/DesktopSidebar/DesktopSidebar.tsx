@@ -2,7 +2,7 @@ import ActiveLink from '@components/atoms/ActiveLink/ActiveLink'
 import { prodHouseDashboardUrls } from '@utils//constants'
 import React from 'react'
 import { Button } from '@windmill/react-ui'
-import Logo from '../../../public/images/Logo.svg'
+import Logo from 'public/images/LOGO.svg'
 
 export const DesktopSidebar = () => (
   <aside className="z-30 flex-shrink-0 hidden w-64 overflow-y-auto bg-gray-50 dark:bg-gray-800 lg:block">

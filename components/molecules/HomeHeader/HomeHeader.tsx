@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from 'public/images/Logo.svg'
+import Logo from 'public/images/LOGO.svg'
 import ActiveLink from '@components/atoms/ActiveLink/ActiveLink'
 import { useReactiveVar } from '@apollo/client'
 import {
