@@ -50,8 +50,6 @@ export const LoginForm = (props: Props) => {
 
   const loginWithMobile = async (data: IFormInputs) => {
     const { mobile, password } = data
-    // eslint-disable-next-line no-debugger
-    debugger
     setLoading(true)
     const loginStatus = await handleLogin(mobile, password)
     setLoading(false)
