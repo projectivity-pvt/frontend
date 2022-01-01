@@ -8,6 +8,7 @@ import { userGlobalState } from '@components/globalStates/UserGlobal/UserGlobalS
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { MobileVerificationForm } from '@components/organisms/MobileVerificationForm/MobileVerificationForm'
+import { redirectUser } from '@components/globalStates/UserGlobal/utils'
 
 enum AuthActionEnum {
   'LOGIN' = 'LOGIN',
@@ -68,7 +69,8 @@ export const LoginTemplate = () => {
 
   useEffect(() => {
     if (user?.id) {
-      router.push('/')
+      const userType = user.type
+      redirectUser(userType, router)
       toast.success('Already logged in')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
