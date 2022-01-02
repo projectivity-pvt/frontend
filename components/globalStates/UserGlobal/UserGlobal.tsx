@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Amplify from 'aws-amplify'
 import { awsKeys } from 'awsKeys'
 import { authenticateUserOnMount } from './utils'
+import { Auth } from 'aws-amplify'
 
 Amplify.configure({
   Auth: {
@@ -33,10 +34,12 @@ Amplify.configure({
     //   secure: awsKeys.cookieStorage.secure,
     // },
   },
-  ssr: true,
+  // ssr: true,
 })
 
 export const UserGlobal = () => {
+  console.log(Auth.configure())
+
   useEffect(() => {
     // this function will trigger only once when the app mounts
     authenticateUserOnMount()
