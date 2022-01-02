@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
-import Amplify from 'aws-amplify'
+import Amplify, { Auth } from 'aws-amplify'
 import { awsKeys } from 'awsKeys'
 import { authenticateUserOnMount } from './utils'
-import { Auth } from 'aws-amplify'
 
 Amplify.configure({
   Auth: {
