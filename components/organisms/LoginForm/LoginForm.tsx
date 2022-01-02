@@ -49,9 +49,10 @@ export const LoginForm = (props: Props) => {
   })
 
   const loginWithMobile = async (data: IFormInputs) => {
-    const { mobile, password } = data
+    // const { mobile, password } = data
+    console.log(data)
     setLoading(true)
-    const loginStatus = await handleLogin(mobile, password)
+    const loginStatus = await handleLogin()
     setLoading(false)
     if (loginStatus) {
       const userType = getUserTypeFromAmplify(loginStatus)
