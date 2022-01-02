@@ -17,21 +17,21 @@ Amplify.configure({
     // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
     mandatorySignIn: false,
 
-    // OPTIONAL - Configuration for cookie storage
-    // Note: if the secure flag is set to true, then the cookie transmission requires a secure protocol
-    cookieStorage: {
-      // REQUIRED - Cookie domain (only required if cookieStorage is provided)
-      domain: awsKeys.cookieStorage.domain,
-      // OPTIONAL - Cookie path
-      path: awsKeys.cookieStorage.path,
-      // OPTIONAL - Cookie expiration in days
-      expires: awsKeys.cookieStorage.expires,
-      // OPTIONAL - See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
-      sameSite: awsKeys.cookieStorage.sameSite,
-      // OPTIONAL - Cookie secure flag
-      // Either true or false, indicating if the cookie transmission requires a secure protocol (https).
-      secure: awsKeys.cookieStorage.secure,
-    },
+    // // OPTIONAL - Configuration for cookie storage
+    // // Note: if the secure flag is set to true, then the cookie transmission requires a secure protocol
+    // cookieStorage: {
+    //   // REQUIRED - Cookie domain (only required if cookieStorage is provided)
+    //   domain: awsKeys.cookieStorage.domain,
+    //   // OPTIONAL - Cookie path
+    //   path: awsKeys.cookieStorage.path,
+    //   // OPTIONAL - Cookie expiration in days
+    //   expires: awsKeys.cookieStorage.expires,
+    //   // OPTIONAL - See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+    //   sameSite: awsKeys.cookieStorage.sameSite,
+    //   // OPTIONAL - Cookie secure flag
+    //   // Either true or false, indicating if the cookie transmission requires a secure protocol (https).
+    //   secure: awsKeys.cookieStorage.secure,
+    // },
   },
   ssr: true,
 })
