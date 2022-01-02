@@ -3,8 +3,16 @@ import { NextRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import { User, userGlobalState, UserType } from './UserGlobalState'
 
-export const getUserTypeFromAmplify = (amplifyUser: any): UserType =>
-  amplifyUser?.attributes['custom:user_type']
+export const getUserTypeFromAmplify = (
+  amplifyUser: any
+): UserType | undefined => {
+  try {
+    return amplifyUser?.attributes['custom:user_type']
+  } catch (err: any) {
+    toast.error(err.message)
+  }
+  return undefined
+}
 
 export const redirectUser = (
   userType: UserType,
@@ -85,10 +93,8 @@ export const handleLogin = async (
   let success = null
   try {
     const amplifyUser = await Auth.signIn(`+91${mobile}`, password)
-    if (amplifyUser) {
-      if (amplifyUser.attributes && amplifyUser.username) {
-        setUserGlobalStateFromAmplify(amplifyUser)
-      }
+    if (amplifyUser?.attributes && amplifyUser?.username) {
+      setUserGlobalStateFromAmplify(amplifyUser)
       toast.success('Logged In successfully')
       success = amplifyUser
     } else {

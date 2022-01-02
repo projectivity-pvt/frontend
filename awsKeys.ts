@@ -9,7 +9,7 @@
   userPoolWebClientId: '1a5s45s20jlhihju3qj4f7ejie',
   cookieStorage: {
     path: '/',
-    domain: 'localhost',
+    domain: process.env.NEXT_PUBLIC_DOMAIN,
     expires: 365,
     sameSite: 'strict',
     secure: false,

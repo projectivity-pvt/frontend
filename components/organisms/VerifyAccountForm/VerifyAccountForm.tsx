@@ -53,7 +53,9 @@ export const VerifyAccountForm: React.FC<Props> = (props: Props) => {
     )
     if (verificationSuccess) {
       const userType = getUserTypeFromAmplify(verificationSuccess)
-      redirectUser(userType, router)
+      if (userType) {
+        redirectUser(userType, router)
+      }
     }
     setLoading(false)
   }

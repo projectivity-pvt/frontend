@@ -55,7 +55,9 @@ export const LoginForm = (props: Props) => {
     setLoading(false)
     if (loginStatus) {
       const userType = getUserTypeFromAmplify(loginStatus)
-      redirectUser(userType, router)
+      if (userType) {
+        redirectUser(userType, router)
+      }
     }
   }
 
