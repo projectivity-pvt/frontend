@@ -86,12 +86,13 @@ export const handleSignout = async () => {
   }
 }
 
-export const handleLogin = async (): // mobile: string,
-// password: string
-Promise<any | null> => {
+export const handleLogin = async (
+  mobile: string,
+  password: string
+): Promise<any | null> => {
   let success = null
   try {
-    const amplifyUser = await Auth.signIn(`+917000664252`, 'testing@1')
+    const amplifyUser = await Auth.signIn(`+91${mobile}`, password)
     if (amplifyUser?.attributes && amplifyUser?.username) {
       setUserGlobalStateFromAmplify(amplifyUser)
       toast.success('Logged In successfully')

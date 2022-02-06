@@ -3,11 +3,13 @@ import Amplify, { Auth } from 'aws-amplify'
 import { awsKeys } from 'awsKeys'
 import { authenticateUserOnMount } from './utils'
 
+// https://github.com/aws-amplify/amplify-js/issues/4882
 Amplify.configure({
   Auth: {
     // REQUIRED - Amazon Cognito Region
     region: awsKeys.userPoolRegion,
 
+    authenticationFlowType: 'USER_PASSWORD_AUTH',
     // OPTIONAL - Amazon Cognito User Pool ID
     userPoolId: awsKeys.userPoolId,
 
