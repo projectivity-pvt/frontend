@@ -2,6 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
+  productionBrowserSourceMaps: true,
   images: {
     domains: ['cdn.devdojo.com'],
   },

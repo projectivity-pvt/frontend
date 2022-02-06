@@ -12,6 +12,6 @@
     domain: process.env.NEXT_PUBLIC_DOMAIN,
     expires: 365,
     sameSite: 'strict',
-    secure: false,
+    secure: process.env.NODE_ENV !== 'development',
   },
 }
