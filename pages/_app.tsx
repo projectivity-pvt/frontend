@@ -24,7 +24,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Windmill theme={windmill}>
         <UserGlobal />
         <Toaster />
-        <Component {...pageProps} />
+        <div className="flex h-screen bg-white dark:bg-gray-900">
+          <Component {...pageProps} />
+        </div>
       </Windmill>
     </ApolloProvider>
   )

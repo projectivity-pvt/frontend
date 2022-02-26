@@ -7,12 +7,12 @@ import { HomeTestimonial } from '@components/molecules/HomeTestimonial/HomeTesti
 import React from 'react'
 
 export const HomepageTemplate = () => (
-  <>
+  <div>
     <HomeHeader />
     <HomeHero />
     <HomeContent />
     <HomeFeatures />
     <HomeTestimonial />
     <HomeFooter />
-  </>
+  </div>
 )

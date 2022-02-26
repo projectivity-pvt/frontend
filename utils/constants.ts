@@ -8,6 +8,29 @@ export const prodHouseDashboardUrls = [
   'Hire',
 ]
 
+export const VendorSidebarList = [
+  {
+    url: "/vendor",
+    label: "Overview",
+    icon: "overview"
+  },
+  {
+    url: "/vendor/contracts",
+    label: "Contracts",
+    icon: "contracts"
+  },
+  {
+    url: "/vendor/payments",
+    label: "Payments",
+    icon: "payments"
+  },
+  {
+    url: "/vendor/gigs",
+    label: "Gigs",
+    icon: "gigs"
+  },
+]
+
 export const indianState = [
   'Andhra Pradesh',
   'Arunachal Pradesh',

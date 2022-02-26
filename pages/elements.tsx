@@ -11,16 +11,31 @@ import { VendorEarningReport } from '@components/organisms/VendorEarningReport/V
 import { useReactiveVar } from '@apollo/client'
 import { userGlobalState } from '@components/globalStates/UserGlobal/UserGlobalState'
 import { handleSignout } from '@components/globalStates/UserGlobal/utils'
+import { Breadcrumb } from '@components/molecules/Breadcrumb/Breadcrumb'
+import { ProjectDetailItem } from '@components/molecules/ProjectDetailItem/ProjectDetailItem'
+import { SectionHeading } from '@components/molecules/SectionHeading/SectionHeading'
+import { StatsCard } from '@components/molecules/StatsCard/StatsCard'
+import { Tabs } from '@components/molecules/Tabs/Tabs'
+import { VendorEarningCard } from '@components/molecules/VendorEarningCard/VendorEarningCard'
+import { PendingPaymentCard } from '@components/organisms/PendingPaymentCard/PendingPaymentCard'
+import { ProfileForm } from '@components/organisms/ProfileForm/ProfileForm'
+import { ProjectHeader } from '@components/organisms/ProjectHeader/ProjectHeader'
+import { VendorChart } from '@components/organisms/VendorChart/VendorChart'
+import { VendorContractTable } from '@components/organisms/VendorContractsTable/VendorContractTable'
+import { VendorPaymentTable } from '@components/organisms/VendorPaymentTable/VendorPaymentTable'
+import { VendorProfileCard } from '@components/organisms/VendorProfileCard/VendorProfileCard'
+import { VendorProjectCard } from '@components/organisms/VendorProjectCard/VendorProjectCard'
+import { VendorProjectListItem } from '@components/organisms/VendorProjectListItem/VendorProjectListItem'
 
-const Home: NextPage = () => {
+const ElementsPage: NextPage = () => {
   const { user } = useReactiveVar(userGlobalState)
   // const { data } = useQuery<GetEmployeeDetailsQuery>(query)
   // console.log(data?.getEmployeeDetails?.employeeName)
 
   return (
-    <div className="flex h-screen bg-white dark:bg-gray-900">
+    <>
       <DesktopSidebar />
-      <div className="flex flex-col flex-1 w-full overflow-y-auto ">
+      <div className="flex flex-col w-full overflow-y-auto ">
         <div className="flex items-center p-4 border-b z-[9998] sticky top-0 backdrop-filter backdrop-blur-sm gap-4">
           <HeaderText />
           <NotificationPill />
@@ -28,15 +43,15 @@ const Home: NextPage = () => {
         </div>
         <main className="px-4">
           <EmptyContract />
-          {/* <ProjectDetailItem />
+          <ProjectDetailItem />
           <ProjectHeader />
           <Breadcrumb />
           <VendorPaymentTable />
-          <PendingPaymentCard /> */}
+          <PendingPaymentCard />
           <VendorEarningReport />
-          {/* <VendorEarningCard />
-          <VendorProjectCard /> */}
-          {/* <Tabs />
+          <VendorEarningCard />
+          <VendorProjectCard />
+          <Tabs />
           <div className="mt-5"></div>
           <VendorContractTable />
           <div className="mt-5"></div>
@@ -46,7 +61,7 @@ const Home: NextPage = () => {
           <SectionHeading />
           <VendorProjectListItem />
 
-          <ProfileForm /> */}
+          <ProfileForm />
 
           <ActiveLink activeClassName="bg-rose-100 text-rose-600" href="/">
             <a className="bg-indigo-200 rounded p-2 text-indigo-600">
@@ -70,8 +85,8 @@ const Home: NextPage = () => {
           )}
         </main>
       </div>
-    </div>
+    </>
   )
 }
 
-export default Home
+export default ElementsPage
