@@ -23,8 +23,8 @@ export const VendorContractTemplate = () => (
       <TopHeaderBar />
 
       <main className="px-4 mt-4 mb-20">
-        {/* <EmptyContract /> */}
-        <div className="rounded-lg border flex-grow">
+        <EmptyContract />
+        <div className="rounded-lg flex-grow">
           <div className="p-4 ">
             <h2 className="mb-4">Near Due date</h2>
             <div className="flex items-center gap-4 overflow-auto">

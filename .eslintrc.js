@@ -21,6 +21,7 @@ module.exports = {
   },
   rules: {
     ...a11yOff,
+    'arrow-body-style': 'off',
     'import/prefer-default-export': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
