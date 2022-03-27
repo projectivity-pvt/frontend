@@ -4,3 +4,4 @@ import React from 'react'
 const SingleContractPage = () => <VendorSingleContract />
 
 export default SingleContractPage
+// VendorSingleContract

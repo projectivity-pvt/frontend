@@ -33,8 +33,8 @@ export const VendorSingleContract = () => (
         </div>
         <ProjectHeader />
 
-        <div className="flex items-start gap-4">
-          <div className="mr-4 pr-8 border-r flex-grow">
+        <div className="flex items-start gap-4 w-full">
+          <div className="mr-4 pr-8 border-r flex-grow w-3/4">
             <div className="py-4 mb-8">
               <h2 className="mb-4">Earnings</h2>
               <div className="flex items-center gap-4">
