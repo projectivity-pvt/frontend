@@ -23,8 +23,11 @@ export const ProductionProjectTemplate = () => (
             <TopHeaderBar />
             <div className="rounded-lg flex flex-grow">
                 <div className="p-4 w-2/3">
-                    <h2 className="mb-4">Near Due date</h2>
-                    <div className="flex items-center gap-4 overflow-auto">
+                    <h2 className="text-lg">Near Due date</h2>
+                    <div className="py-5 horizontal_list_wrapper flex items-center gap-4 overflow-auto">
+                        <BusinessProjectCard />
+                        <BusinessProjectCard />
+                        <BusinessProjectCard />
                         <BusinessProjectCard />
                         <BusinessProjectCard />
                         <BusinessProjectCard />
@@ -37,11 +40,25 @@ export const ProductionProjectTemplate = () => (
                 </div>
             </div>
 
-            <div className="mt-8 ">
+            <div className="mt-8 mb-10">
                 <div className="mb-4">
                     <ProuctProjectTabs />
                 </div>
-                <ProductionProjectTable />
+                <div className="vertical_list_wrapper">
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                    <ProductionProjectTable />
+                </div>
             </div>
         </div>
     </>

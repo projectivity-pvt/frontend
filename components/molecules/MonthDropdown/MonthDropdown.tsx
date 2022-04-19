@@ -7,9 +7,9 @@ export const MonthDropdown = () => {
   return (
     <div onClick={() => setMonth('Aug')}>
       <Menu as="div" className="relative inline-block text-left">
-        <Menu.Button className="inline-flex items-center justify-center border w-full px-4 py-2 text-sm font-medium  rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+        <Menu.Button className="inline-flex items-center justify-center border w-full px-4 py-2 text-blue-600 text-sm font-medium  rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
           {month}
-          <ChevronDown height={14} width={14} className="align-middle ml-4" />
+          <ChevronDown height={14} width={14} className="align-middle ml-4 text-blue-600" />
         </Menu.Button>
         <Menu.Items className="absolute p-2 right-0 w-56 mt-2 z-50 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <Menu.Item>

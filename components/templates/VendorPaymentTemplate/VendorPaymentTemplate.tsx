@@ -25,31 +25,36 @@ export const VendorPaymentTemplate = () => (
       <TopHeaderBar />
       <main className="px-4 mt-4 mb-20">
         <div className="flex items-start gap-4">
-          <div className="border-r mr-4 pr-4 flex-grow">
-            <div className="p-4">
-              <h2 className="mb-4">Personal Report</h2>
-              <div className="flex items-start gap-4">
-                <div className="w-full">
-                  <VendorChart />
-                </div>
-                <div className="ml-auto">
-                  <VendorEarningCard />
+          <div className='grid grid-cols-12'>
+            <div className="border-r mr-4 pr-4 flex-grow col-span-8">
+              <div className="p-4">
+                <h3 className="mb-4">Personal Report</h3>
+                <div className="grid grid-cols-12">
+                  <div className="col-span-8">
+                    <VendorChart />
+                  </div>
+                  <div className="col-span-4 mt-5 ml-5">
+                    <VendorEarningCard />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="mt-8">
-              <div className="mb-4">
-                <SectionHeading />
+
+              <div className="mt-8">
+                <div className="mb-4">
+                  <h3 className="mb-4">Recent Earnings</h3>
+                </div>
+                <VendorPaymentTable />
               </div>
-              <VendorPaymentTable />
+            </div>
+
+            <div className=" col-span-4">
+              <VendorEarningReport />
+              <div className="mt-8">
+                <PendingPaymentCard />
+              </div>
             </div>
           </div>
-          <div className="w-1/4">
-            <VendorEarningReport />
-            <div className="mt-8">
-              <PendingPaymentCard />
-            </div>
-          </div>
+
         </div>
       </main>
     </div>

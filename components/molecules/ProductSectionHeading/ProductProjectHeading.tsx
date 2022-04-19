@@ -10,7 +10,7 @@ import RightArrowIcon from '../../../public/images/right-arrow-circle.svg'
 
 export const ProductProjectHeading = () => (
     <div className="py-2 flex items-center">
-        <h2 className="font-bold text-xl">Latest Projects</h2>
+        <h2 className="font-medium text-gray-700 text-lg">Latest Projects</h2>
         <span className='ml-2'><ArrwIcon height={16} width={16} /></span>
     </div>
 )

@@ -13,6 +13,8 @@ import { VendorProfileCard } from '@components/organisms/VendorProfileCard/Vendo
 import { VendorProjectListItem } from '@components/organisms/VendorProjectListItem/VendorProjectListItem'
 import { VendorSidebarList } from '@utils//constants'
 import React from 'react'
+import Image from 'next/image'
+
 
 export const VendorOverviewTemplate = () => {
   let a = 1
@@ -25,33 +27,49 @@ export const VendorOverviewTemplate = () => {
       <div className="flex flex-col flex-1 w-full overflow-y-auto ">
         <TopHeaderBar />
         <main className="px-4 mt-4 mb-20">
-          <div className="flex items-start gap-4">
-            <div className="rounded-lg border flex-grow">
-              <div className="p-4">
-                <h2 className="mb-4">Earnings</h2>
-                <div className="flex items-center gap-4">
-                  <StatsCard />
-                  <StatsCard />
-                  <StatsCard />
+          <div className="grid grid-cols-12 gap-5">
+
+            <div className='col-span-8'>
+              <div className="rounded-lg border flex-grow">
+                <div className="p-4">
+                  <h2 className="mb-4 span">Earnings</h2>
+                  <div className=''>
+                    <StatsCard />
+                  </div>
+                </div>
+
+                <div className="py-4">
+                  <div className=''><VendorChart /></div>
+                </div>
+
+                <div className="flex-grow px-5">
+                  <div className="mt-5">
+                    <SectionHeading />
+                  </div>
+                  <div className="list_wrapper1 flex-grow -mx-2 px-2 py-4 h-60 overflow-scroll mb-2">
+                    <VendorProjectListItem />
+                    <VendorProjectListItem />
+                    <VendorProjectListItem />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div className='col-span-4'>
+              <div className="">
+                <VendorProfileCard />
+              </div>
+
+              <div className="mt-8 -mx-4 p-0">
+                <div className='w-full'>
+                  <Image src="/images/overview/vendorUsp.svg" width={500} height={500} />
                 </div>
               </div>
-              <div className="p-4 w-3/4">
-                <VendorChart />
-              </div>
             </div>
-            <div className="w-1/4">
-              <VendorProfileCard />
-            </div>
+
           </div>
-          <div className="mt-8 flex gap-4 items-stretch">
-            <div className="flex-grow">
-              <div className="mb-4">
-                <SectionHeading />
-              </div>
-              <VendorProjectListItem />
-            </div>
-            <div className="bg-indigo-200 rounded-lg p-4 w-1/4">USP banner</div>
-          </div>
+
         </main>
       </div>
     </>

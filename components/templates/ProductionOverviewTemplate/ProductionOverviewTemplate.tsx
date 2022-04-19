@@ -40,14 +40,25 @@ export const ProductionOverviewTemplate = () => {
 
               <ProductProjectHeading />
 
-              <div className="rounded-lg border flex-grow py-4 mb-5">
+              <div className="list_wrapper1 rounded-lg border flex-grow py-4 mb-5 h-60 overflow-scroll">
+                <ProductProjectListItem />
+                <ProductProjectListItem />
+                <ProductProjectListItem />
+                <ProductProjectListItem />
+                <ProductProjectListItem />
+                <ProductProjectListItem />
                 <ProductProjectListItem />
                 <ProductProjectListItem />
               </div>
 
               <ProductTransactionHeading />
 
-              <div className="rounded-lg border flex-grow py-4">
+              <div className="list_wrapper2 rounded-lg border flex-grow py-4 h-60 overflow-scroll">
+                <ProductTransactionListItem />
+                <ProductTransactionListItem />
+                <ProductTransactionListItem />
+                <ProductTransactionListItem />
+                <ProductTransactionListItem />
                 <ProductTransactionListItem />
                 <ProductTransactionListItem />
               </div>

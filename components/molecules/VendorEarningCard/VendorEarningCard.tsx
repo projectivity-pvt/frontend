@@ -10,7 +10,7 @@ export const VendorEarningCard = () => (
       </div>
       <EarningPercent />
     </div>
-    <p className="text-4xl font-bold text-primary-600 mb-1"> $12,200</p>
+    <p className="text-3xl font-bold text-blue-600 mb-1"> $12, 200</p>
     <p className="text-base font-medium text-gray-400">Lifetime Earning</p>
   </div>
 )
