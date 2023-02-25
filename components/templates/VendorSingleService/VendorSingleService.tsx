@@ -1,97 +1,220 @@
-import { HeaderText } from '@components/atoms/HeaderText/HeaderText'
-import { Breadcrumb } from '@components/molecules/Breadcrumb/Breadcrumb'
-import { NotificationPill } from '@components/molecules/NotificationPill/NotificationPill'
-import { ProjectDetailItem } from '@components/molecules/ProjectDetailItem/ProjectDetailItem'
-import { SectionHeading } from '@components/molecules/SectionHeading/SectionHeading'
-import { StatsCard } from '@components/molecules/StatsCard/StatsCard'
-import { UserPill } from '@components/molecules/UserPill/UserPill'
-import {
-    DesktopSidebar,
-    EntitySourceEnum,
-} from '@components/organisms/DesktopSidebar/DesktopSidebar'
-import { ProjectHeader } from '@components/organisms/ProjectHeader/ProjectHeader'
+import { VendorSidebar1 } from '@components/organisms/DesktopSidebar/VendorSidebar1'
 import { TopHeaderBar } from '@components/organisms/TopHeaderBar/TopHeaderBar'
-import { VendorChart } from '@components/organisms/VendorChart/VendorChart'
-import { VendorPaymentTable } from '@components/organisms/VendorPaymentTable/VendorPaymentTable'
-import { VendorProfileCard } from '@components/organisms/VendorProfileCard/VendorProfileCard'
-import { VendorProjectListItem } from '@components/organisms/VendorProjectListItem/VendorProjectListItem'
-import { VendorSidebarList } from '@utils//constants'
 import { VendorCatalogTable } from '@components/organisms/VendorCatalogTable/VendorCatalogTable'
 import { VendorCatalogDcsTable } from '@components/organisms/VendorCatalogTable/VendorCatalogDcsTable'
+import { NewCatalogue } from '@components/organisms/Catalog/NewCatalogue'
+import { NewDoc } from '@components/organisms/Catalog/NewDoc'
+import { ServiceSwitch } from '@components/organisms/Catalog/ServiceSwitch'
+import 'react-toastify/dist/ReactToastify.css'
+import React, { useState } from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen, faSearch } from '@fortawesome/free-solid-svg-icons'
 
-import React from 'react'
+// ----------------getStaticPaths--------------
 
-export const VendorSingleService = () => (
+// ----------------getStaticPaths--------------
+
+// ----------------getStaticProps--------------
+
+// ----------------getStaticProps--------------
+
+export const VendorSingleService = () => {
+  const [checked, setChecked] = useState(false)
+  const handleChange = () => {
+    checked ? setChecked(false) : setChecked(true)
+  }
+
+  const [openCatModal, setOpenCatModal] = useState(false)
+  const [openDoceModal, setOpenDocModal] = useState(false)
+
+  return (
     <>
-        <DesktopSidebar
-            sidebarList={VendorSidebarList}
-            source={EntitySourceEnum.VENDOR}
-        />
-        <div className="flex flex-col flex-1 w-full overflow-y-auto ">
-            <TopHeaderBar />
-
-            <main className="px-4 mt-4 mb-20">
-                <div className='flex justify-between items-center'>
-                    <div className='flex items-center'>
-                        <h3 className=''>Camera Service</h3>
-                        <span className='ml-5'>Live</span>
-                    </div>
-
-                    <div>
-                        <p className='text-xs text-white bg-blue-600 rounded-2xl px-5 py-2'>Save Changes</p>
-                    </div>
-                </div>
-
-                <div>
-                    <p className='text-xs text-white bg-yellow-300 rounded-2xl px-5 py-1 w-24'>Inventory</p>
-                </div>
-
-                <div className='mt-5 w-3/4'>
-                    <h5 className='mb-1'>Description</h5>
-                    <textarea className='w-full h-24 rounded-lg resize-none text-sm border-gray-300'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis commodo nec, vestibulum adipiscing. Vitae varius sem eget scelerisque nulla habitant. Mauris lectus volutpat placerat lectus mauris, lacus. Blandit pellentesque magna consequat gravida dui ac.</textarea> <br />
-                    <span className='text-xs float-right mr-5 cursor-pointer'>edit</span>
-                </div>
-
-                <div className='mt-10'>
-                    <h5 className='mb-1'>Pricing</h5>
-                    <div>
-                        <input type="text" className='text-sm rounded-lg border-gray-300' value="$500 - $900" />
-                    </div>
-                </div>
-
-                <div className='mt-10 flex items-center justify-between mb-10'>
-                    <div className=''>
-                        <h5 className=''>Catalogue</h5>
-                    </div>
-
-                    <div>
-                        <p className='text-xs text-white bg-blue-600 rounded-2xl px-5 py-2'>Add item to catalogue</p>
-                    </div>
-                </div>
-
-                <div>
-                    <VendorCatalogTable />
-                </div>
-
-
-                <div className='mt-10 flex items-center justify-between mb-10'>
-                    <div className=''>
-                        <h5 className=''>Documents and Licence</h5>
-                    </div>
-
-                    <div>
-                        <p className='text-xs text-white bg-blue-600 rounded-2xl px-5 py-2'>Upload new Document</p>
-                    </div>
-                </div>
-
-                <div>
-                    <VendorCatalogDcsTable />
-                </div>
-
-
-
-            </main>
+      {openCatModal && (
+        <div className="pop_container">
+          <div className="w-full md:w-3/5">
+            <NewCatalogue closeCatPopup={setOpenCatModal} />
+            <p className="h-5"></p>
+          </div>
         </div>
+      )}
+
+      {openDoceModal && (
+        <div className="pop_container" style={{ alignItems: 'center' }}>
+          <div className="w-3/5" style={{ width: '500px' }}>
+            <NewDoc closeDocPopup={setOpenDocModal} />
+            <p className="h-5"></p>
+          </div>
+        </div>
+      )}
+
+      <VendorSidebar1 />
+
+      <div className="flex flex-col flex-1 w-full overflow-y-auto ">
+        <TopHeaderBar />
+
+        <main className="mb-2 background">
+          <div className="card">
+            {/* -------------------top bar---------------- */}
+            <div className="flex justify-between items-center">
+              <div className="flex items-center">
+                <h3 className="">Camera Service</h3>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <ServiceSwitch />
+              </div>
+
+              <div>
+                <p className="text-xs text-white bg-[#33c5f4] rounded-full px-5 py-2.5">
+                  Save Changes
+                </p>
+              </div>
+            </div>
+            {/* -------------------top bar---------------- */}
+
+            <div>
+              <p className="text-sm text-white bg-[#6abbad] text-center py-2 rounded-full w-32">
+                Inventory
+              </p>
+            </div>
+
+            <div className="mt-10 w-full">
+              <h5 className="mb-1">
+                <b>Description</b>
+              </h5>
+              <textarea 
+              className="w-full h-24 rounded-lg resize-none text-sm border-gray-300 teaxtarea_focus"
+              placeholder='Write description'
+              />{' '}
+              <br />
+              <span className="text-xs float-right cursor-pointer flex gap-1 items-center bg-red-500 text-white px-2 py-1 rounded-full">
+                <FontAwesomeIcon
+                  className="text-gray-100 text-[10px]"
+                  icon={faPen}
+                ></FontAwesomeIcon>
+                edit
+              </span>
+            </div>
+
+            <div className="w-full lg:w-1/3">
+              <h5 className="mb-1">
+                <b>Pricing</b>
+              </h5>
+              <div>
+                <input
+                  type="text"
+                  className="text-sm rounded border-gray-300 w-full"
+                  value="$500 - $900"
+                />
+
+                <span className="mt-1 text-xs ml-auto text-center cursor-pointer flex justify-center gap-1 items-center bg-red-500 text-white w-14 py-1 rounded-full">
+                  <FontAwesomeIcon
+                    className="text-gray-100 text-[10px]"
+                    icon={faPen}
+                  ></FontAwesomeIcon>
+                  edit
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="card mt-5">
+            <div className=" mb-5 flex justify-between items-center">
+              <div className="">
+                <h3 className="">Catalogue</h3>
+              </div>
+
+              <div className="hidden md:flex lg:flex items-center border border-gray-300 rounded-md px-2 w-1/2">
+                <input
+                  type="text"
+                  placeholder="Search for catalogue ..."
+                  className="border-0 text-sm w-full"
+                />
+                <FontAwesomeIcon
+                  className="group-hover:text-white text-gray-400 text-sm"
+                  icon={faSearch}
+                ></FontAwesomeIcon>
+              </div>
+
+              <div>
+                <p
+                  className="cursor-pointer text-xs text-white bg-[#33c5f4] rounded-full px-5 py-2.5"
+                  onClick={() => {
+                    setOpenCatModal(true)
+                  }}
+                >
+                  Add item to catalogue
+                </p>
+              </div>
+            </div>
+
+            <div className="flex md:hidden lg:hidden items-center border border-gray-300 rounded-md px-2 w-full mb-4">
+              <input
+                type="text"
+                placeholder="Search for catalogue ..."
+                className="border-0 text-sm w-full"
+              />
+              <FontAwesomeIcon
+                className="group-hover:text-white text-gray-400 text-sm"
+                icon={faSearch}
+              ></FontAwesomeIcon>
+            </div>
+
+            <div>
+              <VendorCatalogTable />
+            </div>
+          </div>
+
+          <div className="card mt-5">
+            <div className=" mb-5 flex justify-between items-center">
+              <div className="">
+                <h3 className="">Documents and Licence</h3>
+              </div>
+
+              <div className="hidden md:flex lg:flex items-center border border-gray-300 rounded-md px-2 w-1/2">
+                <input
+                  type="text"
+                  placeholder="Search for documents ..."
+                  className="border-0 text-sm w-full"
+                />
+                <FontAwesomeIcon
+                  className="group-hover:text-white text-gray-400 text-sm"
+                  icon={faSearch}
+                ></FontAwesomeIcon>
+              </div>
+
+              <div>
+                <p
+                  className="cursor-pointer text-xs text-white bg-[#33c5f4] rounded-full px-5 py-2.5"
+                  onClick={() => {
+                    setOpenDocModal(true)
+                  }}
+                >
+                  Upload new Document
+                </p>
+              </div>
+            </div>
+
+            <div className="flex md:hidden lg:hidden items-center border border-gray-300 rounded-md px-2 w-full mb-4">
+              <input
+                type="text"
+                placeholder="Search for documents ..."
+                className="border-0 text-sm w-full"
+              />
+              <FontAwesomeIcon
+                className="group-hover:text-white text-gray-400 text-sm"
+                icon={faSearch}
+              ></FontAwesomeIcon>
+            </div>
+
+            <div>
+              <VendorCatalogDcsTable />
+            </div>
+          </div>
+        </main>
+      </div>
     </>
-)
+  )
+}

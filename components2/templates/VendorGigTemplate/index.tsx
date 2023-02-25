@@ -1,0 +1,1 @@
+export { VendorGigTemplate } from './VendorGigTemplate'

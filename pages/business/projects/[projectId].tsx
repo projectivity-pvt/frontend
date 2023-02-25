@@ -1,7 +1,7 @@
-import { BusinessSingleProject } from '@components/templates/BusinessSingleProject/BusinessSingleProject'
+import { ProductionSingleProjectTemplate } from '@components/templates/ProductionProjectTemplate/ProductionSingleProjectTemplate'
+import { NextPage } from 'next'
 import React from 'react'
 
-const SingleProjectPage = () => <BusinessSingleProject />
+const BusinessProject: NextPage = () => <ProductionSingleProjectTemplate />
 
-export default SingleProjectPage
-// VendorSingleContract
+export default BusinessProject;

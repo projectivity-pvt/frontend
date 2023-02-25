@@ -7,10 +7,16 @@ module.exports = windmill({
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
-    fontFamily: {
-      sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+    extend: {
+      backgroundImage: {
+        'login-back': "url('/images/login_dash.jpg')",
+      }
     },
+    fontFamily: {
+      sans: ['montserrat', ...defaultTheme.fontFamily.sans],
+    },
+
+   
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -22,15 +28,15 @@ module.exports = windmill({
       bluegray: colors.blueGray,
       rose: colors.rose,
       indigo: colors.indigo,
-      primary: colors.indigo,
+      primary: '#33c5f4'
     },
   },
   variants: {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
+    require('tailwind-scrollbar-hide')
   ],
 })

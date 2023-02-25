@@ -7,7 +7,7 @@ export const SingleFinanceStatsCard = () => (
         <div className="flex flex-wrap justify-evenly w-full">
 
             {/* ----------------------card 1---------------- */}
-            <div className="rounded-xl p-3 flex flex-col items-center gap-4 w-52 h-32 m-2" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #E7EDFF 100%);" }}>
+            <div className="card rounded-xl p-3 flex flex-col items-center gap-4 w-52 h-32 m-2" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #E7EDFF 100%)" }}>
                 <div className="flex items-center justify-center -mt-5">
                     <Image src="/images/notification.svg" height={24} width={24} />
                 </div>
@@ -19,7 +19,7 @@ export const SingleFinanceStatsCard = () => (
             {/* ----------------------card 1---------------- */}
 
             {/* ----------------------card 2---------------- */}
-            <div className="rounded-xl p-3 flex flex-col items-center gap-4 w-52 h-32 m-2" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #DAFFDE 100%);" }}>
+            <div className="card rounded-xl p-3 flex flex-col items-center gap-4 w-52 h-32 m-2" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #DAFFDE 100%)" }}>
                 <div className="flex items-center justify-center -mt-5">
                     <Image src="/images/notification.svg" height={24} width={24} />
                 </div>
@@ -31,7 +31,7 @@ export const SingleFinanceStatsCard = () => (
             {/* ----------------------card 2---------------- */}
 
             {/* ----------------------card 3---------------- */}
-            <div className="rounded-xl p-3 flex flex-col items-center gap-4 w-52 h-32 m-2" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #FFE6E6 100%);" }}>
+            <div className="card rounded-xl p-3 flex flex-col items-center gap-4 w-52 h-32 m-2" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #FFE6E6 100%)" }}>
                 <div className="flex items-center justify-center -mt-5">
                     <Image src="/images/notification.svg" height={24} width={24} />
                 </div>

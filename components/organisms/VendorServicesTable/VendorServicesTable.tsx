@@ -1,112 +1,128 @@
-import { Avatar } from '@components/atoms/Avatar/Avatar'
+import Link from 'next/link'
+import axios from 'axios'
+import Moment from "moment";
+
 import {
-    TableContainer,
-    Table,
-    TableHeader,
-    TableRow,
-    TableCell,
-    TableBody,
-    Badge,
-    Button,
+  TableContainer,
+  Table,
+  TableHeader,
+  TableRow,
+  TableCell,
+  TableBody,
+  Badge,
 } from '@windmill/react-ui'
-import React from 'react'
-import DownloadIcon from 'public/images/arrow/download.svg'
+import React, { useEffect, useState } from 'react'
 
-export const VendorServicesTable = () => (
-    <>
-        <div className='vertical_list_wrapper'>
+export const VendorServicesTable = () => {
+  const [servData, setServData] = useState([])
 
-            <div className='flex justify-between items-center text-center mb-3'>
-                <h5 className='td_serv_flex1 text-sm font-semibold text-gray-600 text-left ml-5'>Name</h5>
-                <h5 className='td_serv_flex2 text-sm font-semibold text-gray-600 text-left ml-5'>Status</h5>
-                <h5 className='td_serv_flex3 text-sm font-semibold text-gray-600 text-center ml-5'>Pricing</h5>
-                <h5 className='td_serv_flex4 text-sm font-semibold text-gray-600 text-left ml-5'>Catalogue</h5>
-                <h5 className='td_serv_flex5 text-sm font-semibold text-gray-600 text-center ml-5'>Actions</h5>
-            </div>
+  useEffect(() => {
+    axios.get('http://localhost:8050/services/all')
+      .then((response) => {
+        setServData(response.data.services)
+        console.log(response.data.services)
+      })
+  }, [])
 
-            <div className='tr_flex flex justify-between items-center py-3 px-3 rounded mb-2' style={{ background: "#F9F9F9;" }}>
-                <h5 className='td_serv_flex1 truncate text-sm text-left'>Camera Services</h5>
-                <h5 className='td_serv_flex2 truncate text-left whitespace-nowrap text-xs text-blue-600'>Live</h5>
-                <h5 className='td_serv_flex3 text-center text-xs text-gray-600'>$300 - $500</h5>
-                <h5 className='td_serv_flex4 text-center text-sm text-green-500'>Added</h5>
-                <h5 className='td_serv_flex5 text-center'>
-                    <span className='text-white bg-green-500 rounded-2xl text-xs px-5 py-0.5 mr-3'>Update</span>
-                    <span className='text-white bg-red-500 rounded-2xl text-xs px-5 py-0.5'>Delete</span>
-                </h5>
-            </div>
+  return (
+    <div>
+      <TableContainer className="ring-0">
+        <Table>
+          <TableHeader className='shadow'>
+            <TableRow className='bg-[#33c5f4] border-2 border-[#33c5f4] shadow-lg text-white rounded-lg' >
+              <TableCell>
+                <div className=" text-sm font-normal capitalize">Name</div>
+              </TableCell>
+              <TableCell>
+                <div className="text-sm font-normal capitalize">
+                  Statue
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="w-52 text-center text-sm font-normal capitalize">
+                  Pricing
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="text-sm font-normal capitalize">
+                  Catalogue
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="text-sm font-normal capitalize">
+                  Created At
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="text-sm font-normal capitalize text-center">
+                  Actions
+                </div>
+              </TableCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
 
-            <div className='tr_flex flex justify-between items-center py-3 px-3 rounded mb-2' style={{ background: "#F9F9F9;" }}>
-                <h5 className='td_serv_flex1 truncate text-sm text-left'>Camera Services</h5>
-                <h5 className='td_serv_flex2 truncate text-left whitespace-nowrap text-xs text-blue-600'>Live</h5>
-                <h5 className='td_serv_flex3 text-center text-xs text-gray-600'>$300 - $500</h5>
-                <h5 className='td_serv_flex4 text-center text-sm text-red-500'>Missing</h5>
-                <h5 className='td_serv_flex5 text-center'>
-                    <span className='text-white bg-green-500 rounded-2xl text-xs px-5 py-0.5 mr-3'>Update</span>
-                    <span className='text-white bg-red-500 rounded-2xl text-xs px-5 py-0.5'>Delete</span>
-                </h5>
-            </div>
-
-            <div className='tr_flex flex justify-between items-center py-3 px-3 rounded mb-2' style={{ background: "#F9F9F9;" }}>
-                <h5 className='td_serv_flex1 truncate text-sm text-left'>Camera Services</h5>
-                <h5 className='td_serv_flex2 truncate text-left whitespace-nowrap text-xs text-blue-600'>Live</h5>
-                <h5 className='td_serv_flex3 text-center text-xs text-gray-600'>$300 - $500</h5>
-                <h5 className='td_serv_flex4 text-center text-sm text-green-500'>Added</h5>
-                <h5 className='td_serv_flex5 text-center'>
-                    <span className='text-white bg-green-500 rounded-2xl text-xs px-5 py-0.5 mr-3'>Update</span>
-                    <span className='text-white bg-red-500 rounded-2xl text-xs px-5 py-0.5'>Delete</span>
-                </h5>
-            </div>
-
-            <div className='tr_flex flex justify-between items-center py-3 px-3 rounded mb-2' style={{ background: "#F9F9F9;" }}>
-                <h5 className='td_serv_flex1 truncate text-sm text-left'>Camera Services</h5>
-                <h5 className='td_serv_flex2 truncate text-left whitespace-nowrap text-xs text-blue-600'>Live</h5>
-                <h5 className='td_serv_flex3 text-center text-xs text-gray-600'>$300 - $500</h5>
-                <h5 className='td_serv_flex4 text-center text-sm text-red-500'>Missing</h5>
-                <h5 className='td_serv_flex5 text-center'>
-                    <span className='text-white bg-green-500 rounded-2xl text-xs px-5 py-0.5 mr-3'>Update</span>
-                    <span className='text-white bg-red-500 rounded-2xl text-xs px-5 py-0.5'>Delete</span>
-                </h5>
-            </div>
-
-            <div className='tr_flex flex justify-between items-center py-3 px-3 rounded mb-2' style={{ background: "#F9F9F9;" }}>
-                <h5 className='td_serv_flex1 truncate text-sm text-left'>Camera Services</h5>
-                <h5 className='td_serv_flex2 truncate text-left whitespace-nowrap text-xs text-blue-600'>Live</h5>
-                <h5 className='td_serv_flex3 text-center text-xs text-gray-600'>$300 - $500</h5>
-                <h5 className='td_serv_flex4 text-center text-sm text-green-500'>Added</h5>
-                <h5 className='td_serv_flex5 text-center'>
-                    <span className='text-white bg-green-500 rounded-2xl text-xs px-5 py-0.5 mr-3'>Update</span>
-                    <span className='text-white bg-red-500 rounded-2xl text-xs px-5 py-0.5'>Delete</span>
-                </h5>
-            </div>
-
-            <div className='tr_flex flex justify-between items-center py-3 px-3 rounded mb-2' style={{ background: "#F9F9F9;" }}>
-                <h5 className='td_serv_flex1 truncate text-sm text-left'>Camera Services</h5>
-                <h5 className='td_serv_flex2 truncate text-left whitespace-nowrap text-xs text-blue-600'>Live</h5>
-                <h5 className='td_serv_flex3 text-center text-xs text-gray-600'>$300 - $500</h5>
-                <h5 className='td_serv_flex4 text-center text-sm text-red-500'>Missing</h5>
-                <h5 className='td_serv_flex5 text-center'>
-                    <span className='text-white bg-green-500 rounded-2xl text-xs px-5 py-0.5 mr-3'>Update</span>
-                    <span className='text-white bg-red-500 rounded-2xl text-xs px-5 py-0.5'>Delete</span>
-                </h5>
-            </div>
-
-            <div className='tr_flex flex justify-between items-center py-3 px-3 rounded mb-2' style={{ background: "#F9F9F9;" }}>
-                <h5 className='td_serv_flex1 truncate text-sm text-left'>Camera Services</h5>
-                <h5 className='td_serv_flex2 truncate text-left whitespace-nowrap text-xs text-blue-600'>Live</h5>
-                <h5 className='td_serv_flex3 text-center text-xs text-gray-600'>$300 - $500</h5>
-                <h5 className='td_serv_flex4 text-center text-sm text-green-500'>Added</h5>
-                <h5 className='td_serv_flex5 text-center'>
-                    <span className='text-white bg-green-500 rounded-2xl text-xs px-5 py-0.5 mr-3'>Update</span>
-                    <span className='text-white bg-red-500 rounded-2xl text-xs px-5 py-0.5'>Delete</span>
-                </h5>
-            </div>
-
-        </div>
+            {/* --------------------mapping--------------- */}
+            {servData.map((value) => {
+              return (
+                <>
+                  <Link href={`/vendor/services/${value._id}`}>
+                    <TableRow
+                      className="cursor-pointer"
+                      style={{ background: '#fff' }}
+                    >
+                      <TableCell>
+                        <p className="w-52 truncate text-sm text-black py-1 align-left">
+                          {value.name ? value.name : "--"}
+                        </p>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center">
+                          <p className="text-red-500 py-1 text-sm align-left">
+                            Pause
+                          </p>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="w-46 text-gray-500 text-sm text-center">
+                        {value.priceRange ? value.priceRange : "--"}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="text-gray-500">
+                          <p className="text-sm text-red-500 align-left">
+                            Not Added
+                          </p>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="text-gray-500">
+                          <p className="text-sm text-gray-500 align-left">
+                           {Moment(value.createdAt).format("Do MMM  Y")}
+                          </p>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex items-center py-1 gap-3">
+                          <button className="text-xs bg-green-400 hover:bg-green-500 text-white rounded-2xl py-2 px-5">
+                            Update
+                          </button>
+                          <button className="text-xs bg-red-400 hover:bg-red-500 text-white rounded-2xl py-2 px-5">
+                            Delete
+                          </button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  </Link>
+                </>
+              )
+            })}
+            {/* --------------------mapping--------------- */}
 
 
-
-
-
-
-    </>
-)
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  )
+}

@@ -1,4 +1,4 @@
-import { EmptyContract } from '@components/molecules/EmptyContract/EmptyContract'
+nimport { EmptyContract } from '@components/molecules/EmptyContract/EmptyContract'
 import {
   DesktopSidebar,
   EntitySourceEnum,

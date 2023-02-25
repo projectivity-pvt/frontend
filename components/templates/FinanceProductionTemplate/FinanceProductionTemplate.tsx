@@ -1,78 +1,71 @@
-import React from "react"
+import React, { useState } from 'react'
 import {
-    DesktopSidebar,
-    EntitySourceEnum,
+  DesktopSidebar,
+  EntitySourceEnum,
 } from '@components/organisms/DesktopSidebar/DesktopSidebar'
-import { VendorSidebarList } from '@utils//constants'
-import { TopHeaderBar } from '@components/organisms/TopHeaderBar/TopHeaderBar'
-import { FinanceStatsCard } from '@components/molecules/StatsCard/FinanceStatsCard'
-import { FinanceInvoiceCard } from '@components/molecules/StatsCard/FinanceInvoiceCard'
-import { UpcomingPaymentCard } from '@components/molecules/StatsCard/UpcomingPaymentCard'
-import { RecentTransactionCard } from '@components/molecules/StatsCard/UpcomingPaymentCard'
-
+import { VendorSidebar1 } from 'components2/organisms/DesktopSidebar/VendorSidebar1'
+import { TopHeaderBar } from 'components2/organisms/TopHeaderBar/TopHeaderBar'
+import { VendorChart } from 'components2/organisms/VendorChart/VendorChart'
+import { VendorEarningCard } from 'components2/molecules/VendorEarningCard/VendorEarningCard'
+import { VendorEarningReport } from 'components2/organisms/VendorEarningReport/VendorEarningReport'
+import { PendingPaymentCard } from 'components2/organisms/PendingPaymentCard/PendingPaymentCard'
+import { VendorPaymentTable } from 'components2/organisms/VendorPaymentTable/VendorPaymentTable'
+import { BusinessSidebar1 } from '@components/organisms/DesktopSidebar/BusinessSidebar1'
 
 
 export const FinanceProductionTemplate = () => {
-    return (
-        <>
-            <DesktopSidebar
-                sidebarList={VendorSidebarList}
-                source={EntitySourceEnum.VENDOR}
-            />
-            <div className="flex flex-col flex-1 w-full overflow-y-auto ">
-                <TopHeaderBar />
-                <main className=" flex px-4 mt-4 mb-20  w-full">
 
-                    <div className="flex flex-col w-3/4 pr-5">
+  return (
+    <>
 
-                        <div className="flex justify-between items-center mb-10">
-                            <p>Expense This Month</p>
-                            <button className="border-blue-400">oct, 2021</button>
-                        </div>
+      <BusinessSidebar1 />
+      <div className="flex flex-col flex-1 w-full overflow-y-auto background">
+        <TopHeaderBar />
 
-                        <div className="mb-10">
-                            <FinanceStatsCard />
-                        </div>
-
-                        <div className="flex justify-between mb-3 px-5">
-                            <p className="text-sm">Projects and Invoices</p>
-                            <button className="border-gray-300 text-sm">All</button>
-                        </div>
-                        <div>
-                            <FinanceInvoiceCard />
-                            <FinanceInvoiceCard />
-                            <FinanceInvoiceCard />
-                        </div>
-
+        <main className="px-2 mt-2 mb-2">
+          <div className="flex items-start gap-4">
+            <div className="grid grid-cols-12">
+              <div className="border-r mr-4 pr-4 flex-grow col-span-8">
+                <div className="card">
+                  <h3 className="mb-4">Personal Report</h3>
+                  <div className="grid grid-cols-12">
+                    <div className="col-span-8">
+                      <VendorChart />
                     </div>
-
-                    <div className="w-1/4 border-l pl-5">
-                        <div className="mb-10 pt-10">
-                            <p className="font-bold text-sm pb-3">Upcoming Payments</p>
-                            <div>
-                                <UpcomingPaymentCard />
-                                <UpcomingPaymentCard />
-                                <UpcomingPaymentCard />
-                                <UpcomingPaymentCard />
-                            </div>
-                        </div>
-
-                        <div>
-                            <p className="font-bold text-sm pb-3">Latest Transactions</p>
-                            <div>
-                                <RecentTransactionCard />
-                                <RecentTransactionCard />
-                                <RecentTransactionCard />
-                                <RecentTransactionCard />
-                            </div>
-                        </div>
-
+                    <div className="col-span-4 mt-10 ml-5">
+                      <VendorEarningCard />
                     </div>
+                  </div>
+                </div>
+              </div>
 
+              <div className=" col-span-4">
+                <div className="card" style={{ padding: '0' }}>
+                  <VendorEarningReport />
+                </div>
 
-                </main>
-            </div >
+                <div className="mt-5">
+                  <div className="card" style={{ height: '400px' }}>
+                    <PendingPaymentCard />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        </>
-    );
+          <div className="mt-5">
+            <div className="card">
+              <div className="mb-4 flex items-center justify-between">
+                <h3 className="">Recent Expenses</h3>
+                <button className="text-xs bg-red-600 text-white p-2 px-5 rounded">
+                  Download CSV
+                </button>
+              </div>
+              <VendorPaymentTable />
+            </div>
+          </div>
+        </main>
+      </div>
+    </>
+  )
 }

@@ -1,9 +1,44 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell, faDollar } from "@fortawesome/free-solid-svg-icons";
 
-export const NotificationPill = () => (
-  <div className="relative p-2 rounded-full bg-white shadow-md flex gap-3 h-[60px] w-[60px] items-center cursor-pointer justify-center">
-    <Image src="/images/notification.svg" height={20} width={20} />
-    <span className="absolute h-2 w-2 bg-rose-500 rounded-full top-[14px] right-[18px]" />
-  </div>
-)
+
+export const NotificationPill = () => {
+
+
+  return (
+    <>
+
+      <div className="hidden group py-2 px-3 rounded-full bg-white md:flex gap-2 items-center shadow-md cursor-pointer">
+        <h4><FontAwesomeIcon className="text-gray-400 text-lg" icon={faBell}></FontAwesomeIcon></h4>
+
+        <div className='shadow-md duration-300 bg-white w-64 h-34 hidden overflow-hidden absolute -ml-48 -mb-48 group-hover:block' style={{ marginTop: "-20px" }}>
+
+          {/* group-hover:h-60 */}
+          <ul className='h-full mt-2'>
+            <Link href="/"><h4 className='group text-xs py-2 px-3 hover:bg-indigo-500 hover:text-white'>
+              <FontAwesomeIcon className="text-gray-300 hover:text-white text-md mr-2" icon={faDollar}></FontAwesomeIcon>PO is generated</h4>
+            </Link>
+
+            <Link href="/"><h4 className='group text-xs py-2 px-3 hover:bg-indigo-500 hover:text-white'>
+              <FontAwesomeIcon className="text-gray-300 hover:text-white text-md mr-2" icon={faDollar}></FontAwesomeIcon>PO is generated</h4>
+            </Link>
+
+            <Link href="/"><h4 className='group text-xs py-2 px-3 hover:bg-indigo-500 hover:text-white'>
+              <FontAwesomeIcon className="text-gray-300 hover:text-white text-md mr-2" icon={faDollar}></FontAwesomeIcon>PO is generated</h4>
+            </Link>
+
+            <Link href="/"><h4 className='group text-xs py-2 px-3 hover:bg-indigo-500 hover:text-white'>
+              <FontAwesomeIcon className="text-gray-300 hover:text-white text-md mr-2" icon={faDollar}></FontAwesomeIcon>PO is generated</h4>
+            </Link>
+          </ul>
+        </div>
+
+      </div>
+
+    </>
+  )
+
+}

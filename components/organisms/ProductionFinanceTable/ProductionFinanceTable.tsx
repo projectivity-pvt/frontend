@@ -18,7 +18,7 @@ export const ProductionFinanceTable = () => (
             <Table>
                 <TableHeader>
                     <TableRow style={{ background: '#fff', border: '1px solid #fff' }}>
-                        <TableCell><div className='py-2 text-sm font-normal capitalize'>Project Name</div></TableCell>
+                        <TableCell><div className='py-2 text-sm font-normal capitalize'>Department Name</div></TableCell>
                         <TableCell><div className='py-2 text-sm font-normal capitalize'>Contractors</div></TableCell>
                         <TableCell><div className='py-2 text-sm font-normal capitalize'>Invoice</div></TableCell>
                         <TableCell><div className='py-2 text-sm font-normal capitalize'>Amount</div></TableCell>

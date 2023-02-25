@@ -3,9 +3,11 @@ import { sidebarState } from '@components/globalStates/Sidebar/SidebarState'
 import { NotificationPill } from '@components/molecules/NotificationPill/NotificationPill'
 import { UserPill } from '@components/molecules/UserPill/UserPill'
 import React from 'react'
+import { Auth } from 'aws-amplify';
+import SearchPill from '@components/molecules/SearchPill/SearchPill'
 
 export const TopHeaderBar = () => (
-  <div className="flex items-center p-4 border-b z-[999] sticky top-0 backdrop-filter backdrop-blur-sm gap-4">
+  <div className="flex items-center px-5 py-2 border-b z-[999] sticky top-0 bg-white gap-4 shadow-sm rounded-md">
     <div className=" lg:hidden" onClick={() => sidebarState(!sidebarState())}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -23,6 +25,7 @@ export const TopHeaderBar = () => (
       </svg>
     </div>
     <HeaderText />
+    <SearchPill />
     <NotificationPill />
     <UserPill />
   </div>

@@ -27,6 +27,6 @@
       "@hooks/*": ["./hooks*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/templates/BusinessCallTime"],
   "exclude": ["node_modules", "apolloClient.ts"]
 }
